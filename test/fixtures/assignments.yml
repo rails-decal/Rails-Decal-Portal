@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  due_date: 2018-04-15 15:18:52
+  description: MyText
+  link: MyString
+  week: one
+  points: 1
+
+two:
+  title: MyString
+  due_date: 2018-04-15 15:18:52
+  description: MyText
+  link: MyString
+  week: two
+  points: 1

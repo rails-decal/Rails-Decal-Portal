@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  score: 1
+  date: 2018-04-15 15:27:00
+  graded: false
+  comment: MyText
+  student: one
+  assignment: one
+  admin: one
+
+two:
+  score: 1
+  date: 2018-04-15 15:27:00
+  graded: false
+  comment: MyText
+  student: two
+  assignment: two
+  admin: two
