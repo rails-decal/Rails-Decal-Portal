@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: weeks
+#
+#  id          :integer          not null, primary key
+#  date        :date
+#  title       :string
+#  description :text
+#  semester_id :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 class Week < ApplicationRecord
   belongs_to :semester
   has_many :resources

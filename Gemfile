@@ -36,6 +36,12 @@ gem 'jbuilder', '~> 2.5'
 # Create fake data for seeds.rb
 gem 'faker'
 
+# Provides an easy-to-use interface for managing your data.
+gem 'rails_admin', '~> 1.3'
+
+#Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema.
+gem 'annotate', '~> 2.7', '>= 2.7.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
