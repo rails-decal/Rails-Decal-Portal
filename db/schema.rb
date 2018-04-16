@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180415225121) do
+ActiveRecord::Schema.define(version: 20180416025134) do
 
   create_table "admins", force: :cascade do |t|
     t.boolean "active"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20180415225121) do
   end
 
   create_table "attendances", force: :cascade do |t|
-    t.integer "type"
+    t.integer "status"
     t.text "comment"
     t.integer "week_id"
     t.integer "student_id"
