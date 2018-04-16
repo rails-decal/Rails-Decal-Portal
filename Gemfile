@@ -35,6 +35,8 @@ gem 'jbuilder', '~> 2.5'
 
 # Create fake data for seeds.rb
 gem 'faker'
+# Use slim for HTML
+gem 'slim'
 
 # Provides an easy-to-use interface for managing your data.
 gem 'rails_admin', '~> 1.3'

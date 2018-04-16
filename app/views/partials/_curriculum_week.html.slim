@@ -1,0 +1,8 @@
+div.curriculum.week.card
+	h3.week-title
+		= "Week " + curriculum_week.id.to_s + " | " + curriculum_week.title 
+	p.week-description
+		= curriculum_week.description
+	div.week-resources
+		- curriculum_week.resources.each do |r|
+			<a href="#{r.link}" target="_blank">#{r.title}</a>
