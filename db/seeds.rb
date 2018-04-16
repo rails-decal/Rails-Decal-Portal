@@ -79,7 +79,7 @@ def make_resources
 	Resource.delete_all
 	1.upto(NUM_RESOURCE) do |n|
 		r = Resource.create(
-			link: Faker::Internet.domain_word + Faker::Internet.domain_suffix,
+			link: "https://" + Faker::Internet.domain_word + "." + Faker::Internet.domain_suffix,
 			title: ["Lecture", "Demo", "Reading"].sample,
 			description: Faker::Hipster.sentences(2),
 			week_id: n % NUM_WEEK + 1,
@@ -96,7 +96,7 @@ def make_assignments
 		a = Assignment.create(
 			title: Faker::Hipster.sentence(3),
 			description: Faker::Hipster.paragraph,
-			link: Faker::Internet.domain_word + Faker::Internet.domain_suffix,
+			link: "https://" + Faker::Internet.domain_word + "." + Faker::Internet.domain_suffix,
 			week_id: n % NUM_WEEK + 1,
 			points: 5,
 		)
