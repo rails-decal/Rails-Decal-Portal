@@ -1,0 +1,14 @@
+nav
+	div#logo
+		img src="" alt="Rails DeCal"
+	div#right-side
+		/ TODO: replace true with user_signed_in? when devise is set up
+		- if true
+			div.nav-item Dashboard
+			div.nav-item Curriculum
+			div.nav-item Assignments
+			div.nav-item Attendance
+		- else
+			/ TODO: change later include things for devise
+			button#sign-up Sign Up
+			button#login Login
