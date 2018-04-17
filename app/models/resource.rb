@@ -13,4 +13,6 @@
 
 class Resource < ApplicationRecord
   belongs_to :week
+  
+  validates :link, :title, presence: true
 end

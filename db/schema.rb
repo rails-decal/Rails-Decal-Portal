@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180416025134) do
+ActiveRecord::Schema.define(version: 20180417072840) do
 
   create_table "admins", force: :cascade do |t|
     t.boolean "active"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20180416025134) do
     t.integer "semester_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "week_number"
     t.index ["semester_id"], name: "index_weeks_on_semester_id"
   end
 

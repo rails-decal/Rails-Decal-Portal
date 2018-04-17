@@ -6,6 +6,7 @@
 #  date        :date
 #  title       :string
 #  description :text
+#  week_number :integer
 #  semester_id :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -16,4 +17,6 @@ class Week < ApplicationRecord
   has_many :resources
   has_many :attendances
   has_many :assignments
+
+  validates :date, :title, :week_number, presence: true
 end

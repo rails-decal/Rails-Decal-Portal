@@ -1,0 +1,8 @@
+= form_for Resource.new, url: create_resource_path(@semester, @week), method: "post" do |f|
+	h3 title
+	= f.text_field :title
+	h3 link
+	= f.text_field :link
+	h3 description
+	= f.text_field :description
+  	= f.submit 

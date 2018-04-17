@@ -67,6 +67,7 @@ def make_weeks
 			date: initial_date + n.weeks,
 			title: Faker::Educator.course,
 			description: Faker::Friends.quote,
+			week_number: n,
 			semester_id: n % NUM_SEMESTER + 1,
 		)
 		w.semester = Semester.find(w.semester_id)
