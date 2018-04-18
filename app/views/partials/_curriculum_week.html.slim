@@ -8,3 +8,5 @@ div.curriculum.week.card
 			<a href="#{r.link}" target="_blank">#{r.title}</a>
 		- curriculum_week.assignments.each do |a|
 			<a href="#{a.link}" target="_blank">Homework</a>
+	= link_to "delete week", semester_week_path(semester_id: @semester.id, id: curriculum_week.id), :method => :delete
+	= link_to "edit week", edit_semester_week_path(semester_id: @semester.id, id: curriculum_week.id), :method => :get

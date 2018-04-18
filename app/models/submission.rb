@@ -3,6 +3,7 @@
 # Table name: submissions
 #
 #  id            :integer          not null, primary key
+#  link			 :text
 #  score         :integer
 #  date          :datetime
 #  graded        :boolean
@@ -18,4 +19,6 @@ class Submission < ApplicationRecord
   belongs_to :admin
   has_many :student_submissions
   has_many :students, :through => :student_submissions
+
+  validates :link, :date, presence: true
 end

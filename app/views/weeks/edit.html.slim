@@ -1,4 +1,4 @@
-= form_for Week.new, url: create_week_path(@semester), method: "post" do |f|
+= form_for [@semester, @week] do |f|
 	h3 week number
 	= f.number_field :week_number
 	h3 date
