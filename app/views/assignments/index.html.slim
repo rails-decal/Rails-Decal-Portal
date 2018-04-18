@@ -1,0 +1,4 @@
+= render "partials/nav"
+main
+	h1.title = "#{@semester.title} Assignments"
+	= render partial: "partials/assignment_card", collection: @assignments

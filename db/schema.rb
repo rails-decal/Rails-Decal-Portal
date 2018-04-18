@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180417072840) do
+ActiveRecord::Schema.define(version: 20180418020322) do
 
   create_table "admins", force: :cascade do |t|
     t.boolean "active"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20180417072840) do
     t.integer "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "link"
     t.index ["admin_id"], name: "index_submissions_on_admin_id"
     t.index ["assignment_id"], name: "index_submissions_on_assignment_id"
   end

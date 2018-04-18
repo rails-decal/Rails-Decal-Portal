@@ -5,6 +5,19 @@ div.curriculum.week.card
 		= curriculum_week.description
 	div.week-resources
 		- curriculum_week.resources.each do |r|
-			<a href="#{r.link}" target="_blank">#{r.title}</a>
+			div.resource
+				a href="#{r.link}" target="_blank" #{r.title}
+				- if r.description != ""
+					div.resource-description
+						= r.description
+						div.resource-edit
+							= link_to "Edit", edit_week_resource_path(week_id: curriculum_week.id, id: r.id)
+						div.resource-delete
+							= link_to "Delete", week_resource_path(week_id: curriculum_week.id, id: r.id), :method => :delete
 		- curriculum_week.assignments.each do |a|
-			<a href="#{a.link}" target="_blank">Homework</a>
+			div.resource.homework
+				a href="#{a.link}" target="_blank" Homework
+
+	= link_to "new resource", new_week_resource_path(week_id: curriculum_week.id)
+	= link_to "delete week", semester_week_path(semester_id: @semester.id, id: curriculum_week.id), :method => :delete
+	= link_to "edit week", edit_semester_week_path(semester_id: @semester.id, id: curriculum_week.id), :method => :get

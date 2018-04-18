@@ -19,3 +19,43 @@
 		padding: 8px;
 	}
 }
+
+.week-resources {
+	display: flex;
+	.resource {
+		transition: 0.3s;
+		position: relative;
+
+		.resource-description {
+			display: none;
+			position: absolute;
+			background: #fafafa;
+			padding: 16px;
+			width: 160px;
+			left: 50%;
+			transform: translateX(-50%) translateY(16px);
+			transition: 0.3s;
+			text-align: center;
+			font-size: 0.8em;
+			color: rgba(0, 0, 0, 0.8);
+
+			&:before {
+				content: "";
+				width: 16px;
+				height: 16px;
+				display: block;
+				position: absolute;
+				top: 0px;
+				left: 50%;
+				transform: translate(-50%, -50%) rotate(45deg);
+				background: #fafafa;
+			}
+		}
+
+		&:hover {
+			.resource-description {
+				display: block;
+			}
+		}
+	}
+}

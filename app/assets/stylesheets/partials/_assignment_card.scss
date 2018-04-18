@@ -1,0 +1,27 @@
+@import 'partials/variables';
+
+.assignment {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	position: relative;
+
+	.assignment-description {
+		margin: 10px;
+	}
+	.assignment-buttons {
+		margin-top: 20px;
+	}
+
+	.grade-info {
+		margin: 10px;
+		text-align: center;
+
+		h4 {
+			margin: 0;
+		}
+
+	}
+}
+
+	

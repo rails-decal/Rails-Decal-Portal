@@ -82,7 +82,7 @@ def make_resources
 		r = Resource.create(
 			link: "https://" + Faker::Internet.domain_word + "." + Faker::Internet.domain_suffix,
 			title: ["Lecture", "Demo", "Reading"].sample,
-			description: Faker::Hipster.sentences(2),
+			description: Faker::Hipster.sentence,
 			week_id: n % NUM_WEEK + 1,
 		)
 		r.week = Week.find(r.week_id)
@@ -129,6 +129,7 @@ def make_submissions
 	1.upto(NUM_SUBMISSIONS) do |n|
 		s = Submission.create(
 			score: [n % 6, nil].sample,
+			link: "https://" + Faker::Internet.domain_word + "." + Faker::Internet.domain_suffix,
 			assignment_id: n % NUM_ASSIGNMENT + 1,
 			admin_id: n % NUM_ADMIN + 1,
 		)
@@ -146,12 +147,9 @@ end
 def make_student_submissions
 	StudentSubmission.delete_all
 	1.upto(NUM_SUBMISSIONS) do |n|
-		s = StudentSubmission.create(
-			student_id: n % NUM_STUDENT + 1,
-			submission_id: n % NUM_SUBMISSIONS + 1,
-		)
-		s.student = Student.find(s.student_id)
-		s.submission = Submission.find(s.submission_id)
+		s = StudentSubmission.create()
+		s.student = Student.find(n % NUM_STUDENT + 1)
+		s.submission = Submission.find(n % NUM_SUBMISSIONS + 1)
 		s.id = n
 		s.save
 	end
@@ -170,5 +168,3 @@ make_assignments
 make_attendances
 make_submissions
 make_student_submissions
-
-
