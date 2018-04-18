@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :weeks do
     resources :assignments, only: [:create, :new, :edit, :update]
+    resources :resources
   end
 
   resources :assignments do
