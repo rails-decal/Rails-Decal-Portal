@@ -8,17 +8,17 @@ div.assignment.card
 			= assignment_card.description
 		div.grade-info
 			div.grade-score 5 / 5
-	div.assignment-buttons
-		/ TODO: Make these dependent on whether the user has completed their submission. 
-		a href="#{assignment_card.link}" target="_blank" View Assignment
-
-		/ sorry this has to be in the middle
 		div.assignment-status
 			/ replace with submission logic
 			p 
 				= "Submission Received"
 			/ include submission logic
-			/ p Feedback
+			p Feedback
+			
+	div.assignment-buttons
+		/ TODO: Make these dependent on whether the user has completed their submission. 
+		a href="#{assignment_card.link}" target="_blank" View Assignment
+
 
 		= link_to "Submit Assignment", new_assignment_submission_path(assignment_id: assignment_card.id)
 		/ = link_to "Delete Assignment", semester_assignment_path(semester_id: @semester.id, id: assignment_card.id), :method => :delete

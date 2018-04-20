@@ -91,7 +91,7 @@ h1, h2, h3, h4, h5, h6, p {
 		letter-spacing: 0.1em;
 	}
 
-	.close {
+	.close, .delete {
 		position: absolute;
 		right: 8px;
 		top: 2px;
@@ -107,6 +107,10 @@ h1, h2, h3, h4, h5, h6, p {
 			opacity: 1;
 		}
 	}
+}
+
+.button {
+	border-radius: 4px;
 }
 
 
@@ -128,6 +132,21 @@ h1, h2, h3, h4, h5, h6, p {
 		top: 0;
 		left: 0;
 		z-index: 2;
+	}
+}
+
+.add {
+	border: 1.5px dashed $gray !important;
+	color: $gray !important;
+	text-align: center;
+	display: inline-block;
+	box-sizing: border-box;
+	cursor: pointer;
+	opacity: 0.7;
+	transition: 0.2s;
+
+	&:hover {
+		opacity: 1;
 	}
 }
 

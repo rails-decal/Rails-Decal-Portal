@@ -6,10 +6,30 @@ div.curriculum.week.card
 	p.week-description
 		= curriculum_week.description
 	div.week-resources
-		= render partial: "partials/resource", collection: curriculum_week.resources
+		= render partial: "partials/resource", collection: curriculum_week.resources.sort_by { |r| r.created_at }
 		- curriculum_week.assignments.each do |a|
 			div.resource.homework
 				a href="#{a.link}" target="_blank" Homework
+		/ replace with logic for admin to have an add resource option
+		- if true 
+			div.resource.add.add-resource + Resource
+	= link_to "×", semester_week_path(semester_id: curriculum_week.semester_id, id: curriculum_week.id), method: :delete, class: "delete"
+
+/ replace with logic for admin to have add resource option
+- if true
+	div.modal-form.new-resource
+		div.close &times;
+		h3 
+			= "New Resource - Week #{curriculum_week.week_number}" 
+		= form_for [curriculum_week, Resource.new] do |f|
+			h6.field-title title
+			= f.text_field :title, :required => true
+			h6.field-title link
+			= f.text_field :link, :required => true
+			h6.field-title description
+			= f.text_area :description, rows: "5"
+			br
+		  	= f.submit 
 
 
 

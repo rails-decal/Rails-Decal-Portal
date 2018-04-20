@@ -6,19 +6,37 @@
 	padding: 0;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: flex-end;
+	align-items: center;
+	box-sizing: border-box;
+
+	&.card {
+		padding: 0 !important;
+		display: flex;
+		flex-direction: column;
+	}
 
 	.assignment-info {
 		padding: 32px;
+		padding-bottom: 8px;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-around;
+		justify-content: space-between;
 
 		.week-number {
 			font-weight: 400;
 		}
 
 		.week-title {
+			margin-top: 8px;
+			font-size: 0.8em;
+			color: $gray;
+			font-weight: 700;
+			height: 3em;
+		}
+
+		.assignment-status {
+			width: 100%;
 			font-size: 0.8em;
 			color: $gray;
 			font-weight: 700;
@@ -36,17 +54,7 @@
 		display: flex;
 		align-items: center;
 		position: relative;
-
-		.assignment-status {
-			position: absolute;
-			top: -2.25em;
-			left: 50%;
-			transform: translateX(-50%);
-			width: 100%;
-			font-size: 0.8em;
-			color: $gray;
-			font-weight: 700;
-		}
+		width: 100%;
 
 		a {
 			padding: 16px 16px;
@@ -58,6 +66,8 @@
 			transition: 0.3s;
 			font-size: 0.8em;
 			box-sizing: border-box;
+			text-decoration: none;
+
 			&:hover {
 				opacity: 1;
 			}
@@ -71,7 +81,7 @@
 	}
 
 	.grade-info {
-		margin: 10px;
+		margin: 32px;
 		text-align: center;
 
 		h4 {
@@ -79,7 +89,7 @@
 		}
 
 		.grade-score {
-			font-size: 1.8em;
+			font-size: 2em;
 		}
 
 	}

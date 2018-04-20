@@ -29,6 +29,20 @@ $(document).on('turbolinks:load', function() {
 			$(".overlay").fadeIn();
 		})
 
+		$(".add-resource").click(function() {
+			let modal = $(this).parent().parent().next();
+			modal.fadeIn();
+			modal.css("top", "50%");
+			$(".overlay").fadeIn();
+		})
+
+		$(".add-week-button").click(function() {
+			let modal = $(this).next();
+			modal.fadeIn();
+			modal.css("top", "50%");
+			$(".overlay").fadeIn();
+		})
+
 		$(".overlay, .close").click(function() {
 			$(".modal-form").css("top", "150%");
 			setTimeout(function() {

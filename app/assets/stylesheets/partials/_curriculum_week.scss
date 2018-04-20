@@ -1,5 +1,7 @@
 @import 'variables';
-.card {
+.curriculum.week.card {
+	position: relative;
+
 	.week-number {
 		font-size: 1.5em;
 		margin-bottom: 12px;
@@ -22,12 +24,29 @@
 	.week-description {
 		font-size: 0.8em;
 		line-height: 2em;
-		margin: 16px 0;
+		margin-top: 16px;
+		margin-bottom: 8px;
+	}
+
+	.delete {
+		display: inline-block;
+		top: 0;
+		right: 0;
+		position: absolute;
+		font-size: 1.5em;
+		color: $gray;
+		opacity: 0.8;
+		transition: 0.2s;
+
+		&:hover {
+			opacity: 1;
+		}
 	}
 }
 
 .week-resources {
 	display: flex;
+	flex-wrap: wrap;
 
 	.resource {
 		font-size: 0.8em;
@@ -39,6 +58,7 @@
 		color: white;
 		border-radius: 4px;
 		z-index: 2;
+		margin-top: 8px;
 
 
 		.resource-description {
@@ -78,6 +98,11 @@
 			}
 		}
 	}
+
+	.add-resource {
+		padding: 8px 8px;
+		background: $off-white;
+	}
 }
 
 #resource-controls {
@@ -85,8 +110,8 @@
 	justify-content: center;
 	margin-top: 8px;
 
-	.resource-edit-button {
-		padding: 4px 8px;
+	.resource-edit-button.edit, .resource-edit-button.delete-resource a {
+		padding: 8px 16px;
 		background: $blue;
 		color: white;
 		border-radius: 4px;
@@ -99,4 +124,9 @@
 			color: white;
 		}
 	}
+}
+
+.add-week-button {
+	width: 100%;
+	margin-top: 0;
 }
