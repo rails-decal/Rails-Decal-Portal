@@ -2,19 +2,55 @@
 
 nav {
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	height: 48px;
-	background-color: $facebook;
-	position: sticky;
+	flex-direction: column;
+	background-color: $white;
 	top: 0;
 	z-index: 2;
+	height: 100vh;
+	position: fixed;
+	left: 0;
+	padding: 0 72px 0 56px;
+	font-family: 'Neuzeit';
+	box-shadow: 0px 0px 16px rgba(0,0,0,0.1);
+	box-sizing: border-box;
 
-	#right-side {
-		display: flex;
+	#user-pic {
+		height: 72px;
+		width: 72px;
+		border-radius: 50%;
+		position: relative;
+		overflow: hidden;
+		margin: 56px 0 32px;
 
-		* {
-			margin: 0px 16px;
+		img {
+			height: 100%;
+		}
+	}
+
+	#user-name {
+		padding-bottom: 24px;
+		font-size: 0.8em;
+		color: $gray;
+	}
+
+	.nav-item {
+		margin: 8px 0;
+		padding: 8px 0;
+		margin-left: -56px;
+		width: calc(100% + 2 * 64px);
+		position: relative;
+
+		a {
+			text-decoration: none;
+			color: inherit;
+			display: block;
+			width: calc(100% - 56px);
+			position: relative;
+			padding-left: 56px;
+		} 
+
+		&:hover {
+			background: $off-white;
 		}
 	}
 }

@@ -1,16 +1,20 @@
 nav
-	div#logo
-		img src="" alt="Rails DeCal"
-	div#right-side
-		/ TODO: replace true with user_signed_in? when devise is set up
-		- if true
-			div.nav-item Dashboard
-			div.nav-item 
-				= link_to "Curriculum", semester_path(id: @semester.id)
-			div.nav-item
-				= link_to "Assignments", semester_assignments_path(semester_id: @semester.id)
-			div.nav-item Attendance
-		- else
-			/ TODO: change later include things for devise
-			button#sign-up Sign Up
-			button#login Login
+	div#user-pic
+		= image_tag("duck.jpg", alt: "Lookin' Good!")
+	div#user-name
+		/ fix this later
+		= "Jemma Kwak"
+	/ TODO: replace true with user_signed_in? when devise is set up
+	- if true
+		div.nav-item#dashboard 
+			a Dashboard
+		div.nav-item#assignments
+			= link_to "Assignments", semester_assignments_path(semester_id: @semester.id)
+		div.nav-item#attendance 
+			a Attendance
+		div.nav-item#curriculum
+			= link_to "Curriculum", semester_path(id: @semester.id)
+	- else
+		/ TODO: change later include things for devise
+		button#sign-up Sign Up
+		button#login Login

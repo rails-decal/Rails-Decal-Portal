@@ -1,19 +1,27 @@
 div.assignment.card
 	div.assignment-info
-		h3.week-title
-			= "Homework " + assignment_card.week.week_number.to_s + " | " + assignment_card.title 
+		h3.week-number
+			= "Homework " + assignment_card.week.week_number.to_s
+		p.week-title
+			= assignment_card.title 
 		p.assignment-description
 			= assignment_card.description
-		div.assignment-buttons
-			/ TODO: Make these dependent on whether the user has completed their submission.
-			a href="#{assignment_card.link}" target="_blank" View Assignment
-			= link_to "Submit Assignment", new_assignment_submission_path(assignment_id: assignment_card.id)
-			= link_to "Delete Assignment", semester_assignment_path(semester_id: @semester.id, id: assignment_card.id), :method => :delete
-			= link_to "Edit Assignment", edit_week_assignment_path(week_id: assignment_card.week_id, id: assignment_card.id), :method => :get
-	div.grade-info
-		h4 Grade
-		/replace with grade calculation logic
-		div.grade-score 95% 
-		div.grade-breakdown 5 points
-		div.feedback-button Feedback
-		/ TODO: include submission feedback, if available.
+		div.grade-info
+			div.grade-score 5 / 5
+	div.assignment-buttons
+		/ TODO: Make these dependent on whether the user has completed their submission. 
+		a href="#{assignment_card.link}" target="_blank" View Assignment
+
+		/ sorry this has to be in the middle
+		div.assignment-status
+			/ replace with submission logic
+			p 
+				= "Submission Received"
+			/ include submission logic
+			/ p Feedback
+
+		= link_to "Submit Assignment", new_assignment_submission_path(assignment_id: assignment_card.id)
+		/ = link_to "Delete Assignment", semester_assignment_path(semester_id: @semester.id, id: assignment_card.id), :method => :delete
+		/ = link_to "Edit Assignment", edit_week_assignment_path(week_id: assignment_card.week_id, id: assignment_card.id), :method => :get
+
+	

@@ -1,16 +1,73 @@
 @import 'partials/variables';
 
 .assignment {
+	width: 260px;
+	text-align: center;
+	padding: 0;
 	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	position: relative;
+	flex-direction: column;
+	justify-content: space-between;
+
+	.assignment-info {
+		padding: 32px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+
+		.week-number {
+			font-weight: 400;
+		}
+
+		.week-title {
+			font-size: 0.8em;
+			color: $gray;
+			font-weight: 700;
+		}
+	}
 
 	.assignment-description {
 		margin: 10px;
+		display: none;
+		color: $gray;
+		font-weight: 700;
 	}
+
 	.assignment-buttons {
-		margin-top: 20px;
+		display: flex;
+		align-items: center;
+		position: relative;
+
+		.assignment-status {
+			position: absolute;
+			top: -2.25em;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 100%;
+			font-size: 0.8em;
+			color: $gray;
+			font-weight: 700;
+		}
+
+		a {
+			padding: 16px 16px;
+			height: 64px;
+			width: 110%;
+			background: $blue;
+			color: $white;
+			opacity: 0.8;
+			transition: 0.3s;
+			font-size: 0.8em;
+			box-sizing: border-box;
+			&:hover {
+				opacity: 1;
+			}
+			&:first-child {
+				border-bottom-left-radius: 4px;
+			}
+			&:last-child {
+				border-bottom-right-radius: 4px;
+			}
+		}
 	}
 
 	.grade-info {
@@ -19,6 +76,10 @@
 
 		h4 {
 			margin: 0;
+		}
+
+		.grade-score {
+			font-size: 1.8em;
 		}
 
 	}
