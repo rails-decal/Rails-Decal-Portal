@@ -10,16 +10,6 @@ class WeeksController < ApplicationController
 		end
 	end
 
-	def new
-		@semester = Semester.find(params[:semester_id])
-		@week = Week.new
-	end
-
-	def edit
-		@semester = Semester.find(params[:semester_id])
-		@week = Week.find(params[:id])
-	end
-
 	def update
 		week = Week.find(params[:id])
 		week.update! week_params

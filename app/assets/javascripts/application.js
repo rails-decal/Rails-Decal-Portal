@@ -22,6 +22,7 @@ $(document).on('turbolinks:load', function() {
 	$(navBarItem).css("color", blue);
 
 	$(document).ready(function() {
+
 		$(".resource-edit-button.edit").click(function() {
 			let modal = $(this).parent().parent().parent().next();
 			modal.fadeIn();
@@ -38,6 +39,13 @@ $(document).on('turbolinks:load', function() {
 
 		$(".add-week-button").click(function() {
 			let modal = $(this).next();
+			modal.fadeIn();
+			modal.css("top", "50%");
+			$(".overlay").fadeIn();
+		})
+
+		$(".edit-week-button").click(function() {
+			let modal = $(this).parent().parent().next().next();
 			modal.fadeIn();
 			modal.css("top", "50%");
 			$(".overlay").fadeIn();
