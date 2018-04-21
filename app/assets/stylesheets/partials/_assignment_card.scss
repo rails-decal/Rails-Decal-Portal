@@ -1,24 +1,95 @@
 @import 'partials/variables';
 
 .assignment {
+	width: 260px;
+	text-align: center;
+	padding: 0;
 	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
 	align-items: center;
-	justify-content: space-around;
-	position: relative;
+	box-sizing: border-box;
+
+	&.card {
+		padding: 0 !important;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.assignment-info {
+		padding: 32px;
+		padding-bottom: 8px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		.week-number {
+			font-weight: 400;
+		}
+
+		.week-title {
+			margin-top: 8px;
+			font-size: 0.8em;
+			color: $gray;
+			font-weight: 700;
+			height: 3em;
+		}
+
+		.assignment-status {
+			width: 100%;
+			font-size: 0.8em;
+			color: $gray;
+			font-weight: 700;
+		}
+	}
 
 	.assignment-description {
 		margin: 10px;
+		display: none;
+		color: $gray;
+		font-weight: 700;
 	}
+
 	.assignment-buttons {
-		margin-top: 20px;
+		display: flex;
+		align-items: center;
+		position: relative;
+		width: 100%;
+
+		a {
+			padding: 16px 16px;
+			height: 64px;
+			width: 110%;
+			background: $blue;
+			color: $white;
+			opacity: 0.8;
+			transition: 0.3s;
+			font-size: 0.8em;
+			box-sizing: border-box;
+			text-decoration: none;
+
+			&:hover {
+				opacity: 1;
+			}
+			&:first-child {
+				border-bottom-left-radius: 4px;
+			}
+			&:last-child {
+				border-bottom-right-radius: 4px;
+			}
+		}
 	}
 
 	.grade-info {
-		margin: 10px;
+		margin: 32px;
 		text-align: center;
 
 		h4 {
 			margin: 0;
+		}
+
+		.grade-score {
+			font-size: 2em;
 		}
 
 	}

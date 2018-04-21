@@ -12,8 +12,9 @@
  *
  *= require_tree .
  *= require_self
+ *= require material_icons
  */
-@import 'partials/common';
+
 
 // Unclear but this variables import isn't working, pls include @ top of every scss file
 @import 'partials/variables';
@@ -21,4 +22,7 @@
 @import 'partials/nav';
 @import 'partials/curriculum_week';
 @import 'partials/assignment_card';
+
+@import 'partials/common';
+
 
