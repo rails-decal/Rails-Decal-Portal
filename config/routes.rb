@@ -16,4 +16,9 @@ Rails.application.routes.draw do
   resources :assignments do
     resources :submissions
   end
+
+  resources :students do
+    resources :attendances
+  end
+
 end
