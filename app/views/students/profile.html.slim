@@ -1,9 +1,4 @@
-<h1>New Student</h1>
-= form_for [@semester, @student] do |f|
-	h3 Student Name
-	= f.text_field :name
-	h3 Email
-	= f.email_field:email
-	h3 Picture
-	= f.text_field :picture
-  	= f.submit
+= render "partials/nav"
+main
+	h1.title = "#{@semester.title} Weekly Curriculum"
+	= render partial: "partials/curriculum_week", collection: @semester.weeks.sort_by {|week| week.week_number} 

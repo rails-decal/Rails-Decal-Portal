@@ -1,24 +1,13 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: [:show, :edit, :update, :destroy]
 
-  # GET /students
-  # GET /students.json
-  def index
-    @students = Student.all
-  end
-
-  # GET /students/1
-  # GET /students/1.json
   def show
     @students = Student.all
   end
 
-  # GET /students/new
   def new
     @student = Student.new
   end
 
-  # GET /students/1/edit
   def edit
     student = Student.find(params[:id])
 		student.update! student_params
@@ -26,8 +15,6 @@ class StudentsController < ApplicationController
 		redirect_to student_path params[:id]
   end
 
-  # POST /students
-  # POST /students.json
   def create
     student = Student.create(student_params)
 		student.semester_id = params[:semester_id]
@@ -39,13 +26,6 @@ class StudentsController < ApplicationController
 		end
   end
 
-  # PATCH/PUT /students/1
-  # PATCH/PUT /students/1.json
-  def update
-  end
-
-  # DELETE /students/1
-  # DELETE /students/1.json
   def destroy
     @student.destroy
     respond_to do |format|
@@ -54,13 +34,10 @@ class StudentsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_student
-      @student = Student.find(params[:id])
-    end
+  def profile
+    @student = Student.find(params[:id])
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+  private
     def student_params
       params.require(:name).permit(:email, :picture)
     end
