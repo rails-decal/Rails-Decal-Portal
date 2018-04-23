@@ -17,11 +17,6 @@ class ResourcesController < ApplicationController
 		end
 	end
 
-	def edit
-		@resource = Resource.find(params[:id])
-		@week = Week.find(params[:week_id])
-	end
-
 	def update
 		resource = Resource.find(params[:id])
 		resource.update! resources_params
