@@ -1,6 +1,6 @@
 class SemestersController < ApplicationController
 	def index
-
+		redirect_to controller: 'semesters', action: 'show', id: 1
 	end
 
 	def create
