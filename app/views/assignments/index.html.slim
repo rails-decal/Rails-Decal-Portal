@@ -1,4 +1,6 @@
 = render "partials/nav"
 main
-	h1.title = "#{@semester.title} Assignments"
-	= render partial: "partials/assignment_card", collection: @assignments
+	h3.semester = @semester.title
+	h1.title Assignments
+	div#assignments-content
+		= render partial: "partials/assignment_card", collection: @assignments

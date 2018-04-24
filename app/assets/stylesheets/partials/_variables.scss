@@ -1,2 +1,23 @@
-$facebook: #4468B0;
-$font-stack: 'Roboto', sans-serif
+@font-face {
+  font-family: 'Neuzeit';
+  src:font-url('neuzeit.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$white: #FEFEFE;
+$off-white: #F7F7F7;
+$gray: #ADADAD;
+$black: #505050;
+
+$blue-highlight: #EDF6FD;
+$blue: #6E9AFF;
+$red: #FF9F9F;
+$green: #9FFFC0;
+
+$large: 32px;
+$mid: 24px;
+$small: 16px;
+
+
+$font-stack: 'Neuzeit', Avenir, sans-serif

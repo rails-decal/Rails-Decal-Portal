@@ -45,6 +45,9 @@ gem 'rails_admin', '~> 1.3'
 #Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema.
 gem 'annotate', '~> 2.7', '>= 2.7.1'
 
+# For icons
+gem 'material_icons'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

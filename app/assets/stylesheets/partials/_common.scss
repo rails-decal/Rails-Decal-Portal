@@ -3,8 +3,150 @@
 body {
 	margin: 0 auto;
 	font-family: $font-stack;
+	background: $off-white;
+	color: $black;
 }
+
 main {
 	width: 600px;
-	margin: 0 auto;
+	margin-top: 80px;
+	margin-left: 340px;
+	// margin: 80px auto;
+	padding-bottom: 80px;
+	position: relative; 
+	// left: 100px;
 }
+
+// RESET EVERYTHING
+h1, h2, h3, h4, h5, h6, p {
+	margin: 0;
+	font-weight: 400;
+}
+
+.card {
+	padding: 32px;
+	margin: 48px 0;
+	background: $white;
+	border-radius: 4px;
+	transition: 0.3s;
+	&:hover {
+		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+	}
+}
+
+.semester {
+	text-transform: uppercase;
+	font-size: 0.8em;
+	color: $gray;
+	letter-spacing: 0.1em;
+	font-weight: 700;
+}
+
+.title {
+	margin: 16px 0;
+	font-size: 1.5em;
+}
+
+.modal-form {
+	display: none;
+	flex-direction: column;
+	color: $black;
+	position: fixed;
+	top: 150%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 48px 56px;
+	background: $white;
+	z-index: 4;
+	border-top: 6px solid $blue;
+	border-radius: 4px;
+	transition: 0.4s;
+
+	input, textarea {
+		padding: 8px 8px;
+		outline-color: rgba(0, 0, 0, 0);
+		-webkit-appearance: none;
+		border: 0px solid $gray;
+		background: $off-white;
+
+
+		&:last-child {
+			margin-top: 24px;
+			color: $white;
+			background: $blue;
+			padding: 8px;
+			cursor: pointer;
+		}
+
+		&:focus {
+			outline-color: $blue;
+		}
+	}
+
+	.field-title {
+		margin: 24px 0 6px;
+		color: $gray;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+	}
+
+	.close, .delete {
+		position: absolute;
+		right: 8px;
+		top: 2px;
+		color: $gray;
+		padding: 8px;
+		cursor: pointer;
+		font-size: 2em;
+		font-weight: 300;
+		opacity: 0.7;
+		transition: 0.3s;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+
+.button {
+	border-radius: 4px;
+}
+
+
+.overlay {
+	display: none;
+	color: $white;
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 3;
+
+	&:after {
+		content: "";
+		background: black;
+		opacity: 0.7;
+		height: 100vh;
+		width: 100vw;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 2;
+	}
+}
+
+.add {
+	border: 1.5px dashed $gray !important;
+	color: $gray !important;
+	text-align: center;
+	display: inline-block;
+	box-sizing: border-box;
+	cursor: pointer;
+	opacity: 0.7;
+	transition: 0.2s;
+
+	&:hover {
+		opacity: 1;
+	}
+}
+

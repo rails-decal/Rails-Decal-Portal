@@ -1,23 +1,50 @@
 div.curriculum.week.card
-	h3.week-title
-		= "Week " + curriculum_week.week_number.to_s + " | " + curriculum_week.title 
+	h3.week-number
+		= "Week " + curriculum_week.week_number.to_s
+		i.material-icons.edit-week-button edit
+	h5.week-title
+		= curriculum_week.title 
 	p.week-description
 		= curriculum_week.description
 	div.week-resources
-		- curriculum_week.resources.each do |r|
-			div.resource
-				a href="#{r.link}" target="_blank" #{r.title}
-				- if r.description != ""
-					div.resource-description
-						= r.description
-						div.resource-edit
-							= link_to "Edit", edit_week_resource_path(week_id: curriculum_week.id, id: r.id)
-						div.resource-delete
-							= link_to "Delete", week_resource_path(week_id: curriculum_week.id, id: r.id), :method => :delete
+		= render partial: "partials/resource", collection: curriculum_week.resources.sort_by { |r| r.created_at }
 		- curriculum_week.assignments.each do |a|
 			div.resource.homework
 				a href="#{a.link}" target="_blank" Homework
+		/ replace with logic for admin to have an add resource option
+		- if true 
+			div.resource.add.add-resource + Resource
+	= link_to "×", semester_week_path(semester_id: curriculum_week.semester_id, id: curriculum_week.id), method: :delete, class: "delete"
 
-	= link_to "new resource", new_week_resource_path(week_id: curriculum_week.id)
-	= link_to "delete week", semester_week_path(semester_id: @semester.id, id: curriculum_week.id), :method => :delete
-	= link_to "edit week", edit_semester_week_path(semester_id: @semester.id, id: curriculum_week.id), :method => :get
+/ replace with logic if user is admin
+- if true
+	div.modal-form.new-resource
+		div.close &times;
+		h3 
+			= "New Resource - Week #{curriculum_week.week_number}" 
+		= form_for [curriculum_week, Resource.new] do |f|
+			h6.field-title title
+			= f.text_field :title, :required => true
+			h6.field-title link
+			= f.text_field :link, :required => true
+			h6.field-title description
+			= f.text_area :description, rows: "5"
+			br
+		  	= f.submit 
+
+- if true
+	div.modal-form.edit-week
+		div.close &times;
+		h3 
+			= "Edit Week #{curriculum_week.week_number}" 
+		= form_for [curriculum_week.semester, curriculum_week] do |f|
+			h6.field-title title
+			= f.text_field :title, :required => true
+			h6.field-title week number
+			= f.number_field :week_number, :required => true
+			h6.field-title date
+			= f.date_field :date, :required => true
+			h6.field-title description
+			= f.text_area :description, rows: "5"
+			br
+		  	= f.submit 
