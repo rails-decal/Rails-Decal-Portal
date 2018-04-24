@@ -1,8 +1,8 @@
 class LoginController < ApplicationController
-  before_action :check_authentication!, except: [:sign_out]
 
   def check_authentication!
     if user_signed_in
+      flash[:error] = "You are already signed in"
       redirect_to '/'
     end
   end
@@ -15,6 +15,15 @@ class LoginController < ApplicationController
     end
   end
 
-  def choose
+  def edit_profile
+    if is_admin
+      redirect_to edit_admin_registration_path
+    else
+      redirect_to edit_student_registration_path
+    end
+  end
+
+  def sign_in
+    check_authentication!
   end
 end

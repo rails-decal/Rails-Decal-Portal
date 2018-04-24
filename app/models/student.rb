@@ -17,6 +17,7 @@ class Student < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :semester, optional: true
+  validates :name, presence: true
   has_many :attendances
   has_many :student_submissions
   has_many :submissions, :through => :student_submissions
