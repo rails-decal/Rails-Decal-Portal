@@ -1,4 +1,6 @@
 class WeeksController < ApplicationController
+	before_action :authenticate!
+
 	def create
 		week = Week.create(week_params)
 		week.semester_id = params[:semester_id]

@@ -1,4 +1,6 @@
 class AssignmentsController < ApplicationController
+	before_action :authenticate!
+
 	def index
 		@assignments = []
 		@semester = Semester.find(params[:semester_id])

@@ -3,7 +3,7 @@ div.curriculum.week.card
 		= "Week " + curriculum_week.week_number.to_s
 		i.material-icons.edit-week-button edit
 	h5.week-title
-		= curriculum_week.title 
+		= curriculum_week.title
 	p.week-description
 		= curriculum_week.description
 	div.week-resources
@@ -12,7 +12,7 @@ div.curriculum.week.card
 			div.resource.homework
 				a href="#{a.link}" target="_blank" Homework
 		/ replace with logic for admin to have an add resource option
-		- if true 
+		- if is_admin 
 			div.resource.add.add-resource + Resource
 	= link_to "×", semester_week_path(semester_id: curriculum_week.semester_id, id: curriculum_week.id), method: :delete, class: "delete"
 
@@ -20,8 +20,8 @@ div.curriculum.week.card
 - if true
 	div.modal-form.new-resource
 		div.close &times;
-		h3 
-			= "New Resource - Week #{curriculum_week.week_number}" 
+		h3
+			= "New Resource - Week #{curriculum_week.week_number}"
 		= form_for [curriculum_week, Resource.new] do |f|
 			h6.field-title title
 			= f.text_field :title, :required => true
@@ -30,13 +30,13 @@ div.curriculum.week.card
 			h6.field-title description
 			= f.text_area :description, rows: "5"
 			br
-		  	= f.submit 
+		  	= f.submit
 
 - if true
 	div.modal-form.edit-week
 		div.close &times;
-		h3 
-			= "Edit Week #{curriculum_week.week_number}" 
+		h3
+			= "Edit Week #{curriculum_week.week_number}"
 		= form_for [curriculum_week.semester, curriculum_week] do |f|
 			h6.field-title title
 			= f.text_field :title, :required => true
@@ -47,4 +47,4 @@ div.curriculum.week.card
 			h6.field-title description
 			= f.text_area :description, rows: "5"
 			br
-		  	= f.submit 
+		  	= f.submit
