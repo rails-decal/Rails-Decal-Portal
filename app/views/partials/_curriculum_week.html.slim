@@ -8,6 +8,7 @@ div.curriculum.week.card
 	p.week-description
 		= curriculum_week.description
 	div.week-resources
+		ruby:
 		= render partial: "partials/resource", collection: curriculum_week.resources.sort_by { |r| r.created_at }
 		- curriculum_week.assignments.each do |a|
 			div.resource.homework

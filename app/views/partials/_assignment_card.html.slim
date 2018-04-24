@@ -2,6 +2,9 @@ div.assignment.card
 	div.assignment-info
 		h3.week-number
 			= "Homework " + assignment_card.week.week_number.to_s
+			i.material-icons.edit-assignment-button.edit-button edit
+		p.due-date
+			= "Due " + assignment_card.due_date.to_date.strftime("%a, %b %d").to_s
 		p.week-title
 			= assignment_card.title 
 		p.assignment-description
@@ -14,14 +17,45 @@ div.assignment.card
 				= "Submission Received"
 			/ include submission logic
 			p Feedback
+	= link_to "×", semester_assignment_path(semester_id: @semester.id, id: assignment_card.id), method: :delete, class: "delete"
 			
 	div.assignment-buttons
-		/ TODO: Make these dependent on whether the user has completed their submission. 
+		/ TODO: possibly make these dependent on whether the user has completed their submission. 
 		a href="#{assignment_card.link}" target="_blank" View Assignment
 
+		div.submit-assignment-button 
+			View Submit Assignment
+			div.submit-assignment-form
+				h6.field-title submission link
+				/ can resuse edit and new submission here, include control statements
+				ruby:
+					s = Submission.new
+				= form_for [assignment_card, s] do |f|
+					= f.text_field :link, required: true
+				  	= f.submit "Submit"
 
-		= link_to "Submit Assignment", new_assignment_submission_path(assignment_id: assignment_card.id)
-		/ = link_to "Delete Assignment", semester_assignment_path(semester_id: @semester.id, id: assignment_card.id), :method => :delete
-		/ = link_to "Edit Assignment", edit_week_assignment_path(week_id: assignment_card.week_id, id: assignment_card.id), :method => :get
-
+				  	
+div.modal-form.edit-assignment
+	div.close &times;
+	h3 
+		= "Edit Homework #{assignment_card.week.week_number}" 
+	= form_for [assignment_card.week, assignment_card] do |f|
+		h6.field-title title
+		= f.text_field :title, :required => true
+		h6.field-title link
+		= f.text_field :link, :required => true
+		h6.field-title description
+		= f.text_area :description, rows: "3"
+		div.horizontal
+			div
+				h6.field-title due date
+				= f.date_field :due_date
+			div
+				h6.field-title points
+				= f.number_field :points
+			div
+				h6.field-title week
+				= f.select :week_number, @week_numbers, selected: assignment_card.week.week_number
+		br
+	  	= f.submit 
 	
