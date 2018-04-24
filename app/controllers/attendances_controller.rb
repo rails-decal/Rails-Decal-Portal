@@ -1,6 +1,7 @@
 class AttendancesController < ApplicationController
   def index
     @student = Student.find(params[:student_id])
+    @semester = Semester.find(@student.semester_id)
   end
 
   def create
