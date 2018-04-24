@@ -51,6 +51,28 @@ $(document).on('turbolinks:load', function() {
 			$(".overlay").fadeIn();
 		})
 
+		$(".submit-assignment-button").click(function() {
+			$(this).find(".submit-assignment-form").fadeIn();
+		});
+
+		$(".submit-assignment-button").hover(function() {}, function() {
+			$(this).find(".submit-assignment-form").fadeOut();
+		})
+
+		$(".edit-assignment-button").click(function() {
+			let modal = $(this).parent().parent().parent().next();
+			modal.fadeIn();
+			modal.css("top", "50%");
+			$(".overlay").fadeIn();
+		});
+
+		$(".add-assignment-button").click(function() {
+			let modal = $(this).parent().next();
+			modal.fadeIn();
+			modal.css("top", "50%");
+			$(".overlay").fadeIn();
+		})
+
 		$(".overlay, .close").click(function() {
 			$(".modal-form").css("top", "150%");
 			setTimeout(function() {

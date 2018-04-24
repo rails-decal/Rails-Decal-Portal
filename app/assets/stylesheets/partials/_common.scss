@@ -60,17 +60,32 @@ h1, h2, h3, h4, h5, h6, p {
 	z-index: 4;
 	border-top: 6px solid $blue;
 	border-radius: 4px;
+	box-sizing: border-box;
+	width: 320px;
 	transition: 0.4s;
+
+	h3 {
+		display: inline-block;
+	}
+
+	form {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		position: relative;
+	}
 
 	input, textarea {
 		padding: 8px 8px;
+		width: 100%;
+		box-sizing: border-box;
 		outline-color: rgba(0, 0, 0, 0);
 		-webkit-appearance: none;
 		border: 0px solid $gray;
 		background: $off-white;
 
 
-		&:last-child {
+		&[type="submit"] {
 			margin-top: 24px;
 			color: $white;
 			background: $blue;
@@ -83,6 +98,27 @@ h1, h2, h3, h4, h5, h6, p {
 		}
 	}
 
+	.horizontal {
+		display: flex;
+		flex: 1;
+		flex-wrap: wrap;
+		width: 100%;
+		justify-content: space-between;
+
+		div {
+			margin-right: 16px;
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+			// max-width: 30%;
+
+			* {
+				flex-shrink: 1;
+				flex-grow: 0;
+			}
+		}
+	}
+
 	.field-title {
 		margin: 24px 0 6px;
 		color: $gray;
@@ -90,22 +126,22 @@ h1, h2, h3, h4, h5, h6, p {
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
 	}
+}
 
-	.close, .delete {
-		position: absolute;
-		right: 8px;
-		top: 2px;
-		color: $gray;
-		padding: 8px;
-		cursor: pointer;
-		font-size: 2em;
-		font-weight: 300;
-		opacity: 0.7;
-		transition: 0.3s;
+.close, .delete {
+	position: absolute;
+	right: 8px;
+	top: 2px;
+	color: $gray;
+	padding: 8px;
+	cursor: pointer;
+	font-size: 2em;
+	font-weight: 300;
+	opacity: 0.7;
+	transition: 0.3s;
 
-		&:hover {
-			opacity: 1;
-		}
+	&:hover {
+		opacity: 1;
 	}
 }
 
@@ -149,4 +185,20 @@ h1, h2, h3, h4, h5, h6, p {
 		opacity: 1;
 	}
 }
+
+i.edit-button {
+	padding: 0 8px;
+	color: $gray;
+	opacity: 0.8;
+	transition: 0.2s;
+	cursor: pointer;
+	position: relative;
+	top: 3px;
+
+	&:hover {
+		opacity: 1;
+	}
+}
+
+
 
