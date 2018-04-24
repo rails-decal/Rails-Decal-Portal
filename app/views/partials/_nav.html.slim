@@ -4,17 +4,25 @@ nav
 	div#user-name
 		/ fix this later
 		= "Jemma Kwak"
-	/ TODO: replace true with user_signed_in? when devise is set up
-	- if true
-		div.nav-item#dashboard 
+	- if user_signed_in
+		- if is_admin
+				div#user-name
+					= "Admin Account"
+		- else
+				div#user-name
+					= "Student Account"
+		div.nav-item#dashboard
 			a Dashboard
 		div.nav-item#assignments
 			= link_to "Assignments", semester_assignments_path(semester_id: @semester.id)
-		div.nav-item#attendance 
+		div.nav-item#attendance
 			a Attendance
 		div.nav-item#curriculum
 			= link_to "Curriculum", semester_path(id: @semester.id)
+		div.nav-item#signout
+			= link_to "Sign Out", sign_out_path
 	- else
-		/ TODO: change later include things for devise
-		button#sign-up Sign Up
-		button#login Login
+		div#user-name
+			= "Auditor Account"
+		div.nav-item#signin
+			= link_to "Sign in", sign_in_path

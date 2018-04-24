@@ -16,6 +16,7 @@
 class Assignment < ApplicationRecord
   belongs_to :week
   has_many :submissions
+  attr_accessor :week_number
 
   validates :title, :due_date, :link, :points, presence: true
 end

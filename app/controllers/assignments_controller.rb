@@ -1,44 +1,47 @@
 class AssignmentsController < ApplicationController
+	before_action :authenticate!
+
 	def index
 		@assignments = []
 		@semester = Semester.find(params[:semester_id])
+		@week_numbers = []
 
 		Week.where(semester_id: params[:semester_id]).each do |w|
+			@week_numbers.push(w.week_number)
 			@assignments.concat(Assignment.where(week_id: w.id))
 		end
 	end
 
-	def new
-		@assignment = Assignment.new
-		@week = Week.find(params[:week_id])
-	end
-
 	def create
-		week = Week.find(params[:week_id])
-		semester = week.semester
+		semester = Semester.find(params[:semester_id])
+		week = Week.where({
+			semester_id: semester.id, 
+			week_number: params[:assignment][:week_number]
+		})[0]
 		assignment = Assignment.create(assignment_params)
-		assignment.week = week
+		assignment.week_id = week.id
 		if assignment.save
-			redirect_to semester_assignments_path semester_id: semester.id
+			redirect_to semester_assignments_path semester_id: week.semester_id
 		else
 			puts week.errors.full_messages.to_sentence
 			flash[:error] = week.errors.full_messages.to_sentence
-			redirect_to new_week_assignment_path week_id: week.id
+			redirect_to new_week_assignment_path, week_id: week.id
 		end
-	end
-
-	def edit
-		@assignment = Assignment.find(params[:id])
-		@week = Week.find(params[:week_id])
 	end
 
 	def update
 		assignment = Assignment.find(params[:id])
-		assignment.update! assignment_params
-		assignment.save
+		semester = Week.find(params[:week_id]).semester
 
-		week = Week.find(params[:week_id])
-		redirect_to semester_assignments_path semester_id: week.semester_id
+		week = Week.where({
+			semester_id: semester.id, 
+			week_number: params[:assignment][:week_number]
+		})[0]
+		assignment.update! assignment_params
+		assignment.week = week
+
+		assignment.save
+		redirect_to semester_assignments_path semester_id: semester.id
 	end
 
 	def destroy
@@ -48,6 +51,6 @@ class AssignmentsController < ApplicationController
 
 	private
 	def assignment_params
-		params.require(:assignment).permit(:link, :title, :due_date, :points, :description)
+		params.require(:assignment).permit(:link, :title, :due_date, :points, :description, :week_number)
 	end
 end

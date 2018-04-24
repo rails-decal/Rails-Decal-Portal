@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   get 'attendances/index'
 
   get 'attendances/create'
@@ -13,19 +14,27 @@ Rails.application.routes.draw do
 
   get 'attendances/destroy'
 
+=======
+  devise_for :admins
+  devise_for :students
+>>>>>>> master
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "semesters#index"
 
+  get 'sign_in', to: 'login#choose'
+  get 'sign_out', to: 'login#sign_out'
+
   resources :semesters do
     resources :weeks, only: [:create, :new, :edit, :update, :destroy]
-    resources :assignments, only: [:index, :destroy]
+    resources :assignments, only: [:index, :destroy, :create]
   end
 
   resources :weeks do
     resources :assignments, only: [:create, :new, :edit, :update]
     resources :resources
   end
+
 
   resources :assignments do
     resources :submissions

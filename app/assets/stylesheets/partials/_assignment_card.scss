@@ -3,18 +3,13 @@
 .assignment {
 	width: 260px;
 	text-align: center;
-	padding: 0;
+	padding: 0 !important;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
-	align-items: center;
+	align-content: center;
 	box-sizing: border-box;
-
-	&.card {
-		padding: 0 !important;
-		display: flex;
-		flex-direction: column;
-	}
+	position: relative;
 
 	.assignment-info {
 		padding: 32px;
@@ -27,11 +22,14 @@
 			font-weight: 400;
 		}
 
-		.week-title {
+		.week-title, .due-date {
 			margin-top: 8px;
 			font-size: 0.8em;
 			color: $gray;
 			font-weight: 700;
+		}
+
+		.week-title {
 			height: 3em;
 		}
 
@@ -40,6 +38,7 @@
 			font-size: 0.8em;
 			color: $gray;
 			font-weight: 700;
+			line-height: 1.5em;
 		}
 	}
 
@@ -55,11 +54,12 @@
 		align-items: center;
 		position: relative;
 		width: 100%;
+		flex-grow: 2;
+		flex-shrink: 2;
 
-		a {
+		a, .submit-assignment-button  {
 			padding: 16px 16px;
 			height: 64px;
-			width: 110%;
 			background: $blue;
 			color: $white;
 			opacity: 0.8;
@@ -67,6 +67,8 @@
 			font-size: 0.8em;
 			box-sizing: border-box;
 			text-decoration: none;
+			position: relative;
+			cursor: pointer;
 
 			&:hover {
 				opacity: 1;
@@ -93,6 +95,64 @@
 		}
 
 	}
+
+	.delete {
+		font-size: 1.5em;
+		text-decoration: none;
+	}
 }
 
+.submit-assignment-form {
+	position: absolute;
+	padding: 16px;
+	background: $blue;
+	left: 50%;
+	transform: translate(-50%, 16px);
+	top: 100%;
+	display: none;
+
+	&:before {
+		content: "";
+		width: 16px;
+		height: 16px;
+		display: block;
+		position: absolute;
+		top: 0px;
+		left: 50%;
+		transform: translate(-50%, -50%) rotate(45deg);
+		background: inherit;
+		border: 40px solid rgba(0, 0, 0, 0);
+		background-clip: padding-box;
+		// box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.1)
+	}
+
+	h6 {
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		margin-bottom: 6px;
+		font-weight: 700;
+		text-align: left;
+	}
+
+	form {
+		display: flex;
+	}
+
+	input {
+		padding: 8px 8px;
+		outline-color: rgba(0, 0, 0, 0);
+		-webkit-appearance: none;
+		border: 0px solid $gray;
+		background: $white;
+
+		&:focus {
+			outline: $blue-highlight;
+		}
+
+		&:last-child {
+			background: $off-white;
+			cursor: pointer;
+		}
+	}
+}
 	

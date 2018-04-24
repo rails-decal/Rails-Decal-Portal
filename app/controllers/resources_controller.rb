@@ -1,4 +1,6 @@
 class ResourcesController < ApplicationController
+	before_action :authenticate!
+
 	def new
 		@resource = Resource.new
 		@week = Week.find(params[:week_id])
@@ -32,7 +34,7 @@ class ResourcesController < ApplicationController
 	end
 
 	private
-	def resources_params 
+	def resources_params
 		params.require(:resource).permit(:link, :title, :description)
-	end 
+	end
 end

@@ -1,4 +1,6 @@
 class SubmissionsController < ApplicationController
+	before_action :authenticate!
+
 	def new
 		@assignment = Assignment.find(params[:assignment_id])
 		@submission = Submission.new
