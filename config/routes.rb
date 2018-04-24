@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'attendances/index'
+
+  get 'attendances/create'
+
+  get 'attendances/new'
+
+  get 'attendances/edit'
+
+  get 'attendances/show'
+
+  get 'attendances/update'
+
+  get 'attendances/destroy'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "semesters#index"
