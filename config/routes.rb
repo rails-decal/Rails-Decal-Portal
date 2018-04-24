@@ -5,13 +5,14 @@ Rails.application.routes.draw do
 
   resources :semesters do
     resources :weeks, only: [:create, :new, :edit, :update, :destroy]
-    resources :assignments, only: [:index, :destroy]
+    resources :assignments, only: [:index, :destroy, :create]
   end
 
   resources :weeks do
     resources :assignments, only: [:create, :new, :edit, :update]
     resources :resources
   end
+
 
   resources :assignments do
     resources :submissions
