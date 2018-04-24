@@ -1,4 +1,4 @@
-= render "partials/nav"
+= render partial: "partials/nav", locals: {:user_signed_in => user_signed_in}
 main
 	h3.semester = "#{@semester.title}"
 	h1.title Curriculum
@@ -19,4 +19,4 @@ main
 			h6.field-title description
 			= f.text_area :description
 			br
-	  		= f.submit 
+	  		= f.submit
