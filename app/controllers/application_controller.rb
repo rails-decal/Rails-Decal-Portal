@@ -21,7 +21,6 @@ class ApplicationController < ActionController::Base
   end
 
   def user_signed_in
-
     !get_current_user.nil?
   end
 

@@ -13,7 +13,7 @@
 
 	.assignment-info {
 		padding: 32px;
-		padding-bottom: 8px;
+		padding-bottom: 16px;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -39,6 +39,11 @@
 			color: $gray;
 			font-weight: 700;
 			line-height: 1.5em;
+			
+			a {
+				text-decoration: none;
+				color: inherit;
+			}
 		}
 	}
 
@@ -69,6 +74,10 @@
 			text-decoration: none;
 			position: relative;
 			cursor: pointer;
+			width: 50%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
 
 			&:hover {
 				opacity: 1;
@@ -92,6 +101,11 @@
 
 		.grade-score {
 			font-size: 2em;
+		}
+
+		.total-points {
+			margin-top: 8px;
+			font-size: 0.8em;
 		}
 
 	}

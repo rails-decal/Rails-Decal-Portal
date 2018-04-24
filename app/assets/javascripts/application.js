@@ -79,5 +79,16 @@ $(document).on('turbolinks:load', function() {
 				$(".modal-form, .overlay").fadeOut();
 			}, 100)
 		})
+
+		$(".alert, #error_explanation").click(function() {
+			$(this).fadeOut();
+			$(this).css("height", "0");
+			$(this).css("padding", "0 24px");
+		})
+
+		setTimeout(function() {
+			$(".alert-notice").fadeOut(1800);
+		}, 1500);
+
 	})
 })

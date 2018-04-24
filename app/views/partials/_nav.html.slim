@@ -1,16 +1,13 @@
 nav
 	div#user-pic
 		= image_tag("duck.jpg", alt: "Lookin' Good!")
-	div#user-name
-		/ fix this later
-		= "Jemma Kwak"
 	- if user_signed_in
 		- if is_admin
 				div#user-name
-					= "Admin Account"
+					= current_admin.name
 		- else
 				div#user-name
-					= "Student Account"
+					= current_student.name
 		div.nav-item#dashboard
 			a Dashboard
 		div.nav-item#assignments
@@ -24,5 +21,7 @@ nav
 	- else
 		div#user-name
 			= "Auditor Account"
-		div.nav-item#signin
-			= link_to "Sign in", sign_in_path
+		div.nav-item#loginadmin
+			= link_to 'Admin Login', new_admin_session_path, method: :get
+		div.nav-item#loginstudent
+			= link_to 'Student Login', new_student_session_path, method: :get
