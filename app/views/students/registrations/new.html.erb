@@ -12,7 +12,6 @@
      <h6 class="field-title"> email</h6>
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
-
     <div class="field">
       <h6 class="field-title"> password</h6>
       <% if @minimum_password_length %>
@@ -30,6 +29,5 @@
       <%= f.submit "Sign up" %>
     </div>
   <% end %>
-
   <%= render "students/shared/links" %>
 </div>

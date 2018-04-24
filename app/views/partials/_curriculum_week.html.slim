@@ -17,7 +17,6 @@ div.curriculum.week.card
 			div.resource.add.add-resource + Resource
 	- if is_admin
 		= link_to "×", semester_week_path(semester_id: curriculum_week.semester_id, id: curriculum_week.id), method: :delete, class: "delete"
-
 - if is_admin
 	div.modal-form.new-resource
 		div.close &times;
@@ -33,7 +32,6 @@ div.curriculum.week.card
 			br
 		  	= f.submit
 
-- if is_admin
 	div.modal-form.edit-week
 		div.close &times;
 		h3

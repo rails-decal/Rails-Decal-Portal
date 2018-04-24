@@ -1,7 +1,9 @@
 nav
-	div#user-pic
-		= image_tag("duck.jpg", alt: "Lookin' Good!")
 	- if user_signed_in
+		div#user-pic
+			= image_tag(@current_user.picture.present? ? @current_user.picture : "default_pro_pic.jpg")
+		div#user-name
+			= @current_user.name
 		- if is_admin
 				div#user-name
 					= current_admin.name
@@ -16,9 +18,13 @@ nav
 			a Attendance
 		div.nav-item#curriculum
 			= link_to "Curriculum", semester_path(id: @semester.id)
+		div.nav-item#editprofile
+		 = link_to "Edit Profile", edit_profile_path
 		div.nav-item#signout
 			= link_to "Sign Out", sign_out_path
 	- else
+		div#user-pic
+			= image_tag("default_pro_pic.jpg")
 		div#user-name
 			= "Auditor Account"
 		div.nav-item#loginadmin
