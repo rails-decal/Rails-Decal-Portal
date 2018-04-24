@@ -1,5 +1,5 @@
 class SemestersController < ApplicationController
-	before_action :authenticate_student!
+	#before_action :authenticate_student!
 	def index
 	end
 
