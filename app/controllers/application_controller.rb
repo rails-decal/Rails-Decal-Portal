@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   def authenticate!
     @current_user = get_current_user
@@ -21,7 +22,6 @@ class ApplicationController < ActionController::Base
   end
 
   def user_signed_in
-
     !get_current_user.nil?
   end
 
@@ -43,5 +43,12 @@ class ApplicationController < ActionController::Base
   helper_method :user_signed_in
   helper_method :is_admin
   helper_method :get_current_user
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :picture, :office_hours])
+  end
 
 end
