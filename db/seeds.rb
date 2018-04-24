@@ -17,8 +17,19 @@ NUM_ASSIGNMENT = 8
 NUM_ATTENDANCES = 70
 NUM_SUBMISSIONS = 50
 
-def make_semesters
+def delete_all_resources
+	StudentSubmission.delete_all
+	Submission.delete_all
+	Attendance.delete_all
+	Assignment.delete_all
+	Resource.delete_all
+	Week.delete_all
+	Student.delete_all
+	Admin.delete_all
 	Semester.delete_all
+end
+
+def make_semesters
 	1.upto(NUM_SEMESTER) do |n|
 		s = Semester.create(
 			title: "Spring " + (2015 + n).to_s,
@@ -30,7 +41,6 @@ def make_semesters
 end
 
 def make_admins
-	Admin.delete_all
 	1.upto(NUM_ADMIN) do |n|
 		a = Admin.create(
 			active: true,
@@ -38,6 +48,7 @@ def make_admins
 			name: Faker::Name.unique.name,
 			office_hours: Faker::RickAndMorty.quote,
 			picture: Faker::Avatar.image,
+			password: "password",
 		)
 		a.id = n
 		a.save
@@ -45,13 +56,13 @@ def make_admins
 end
 
 def make_students
-	Student.delete_all
 	1.upto(NUM_STUDENT) do |n|
 		s = Student.create(
 			name: Faker::Name.unique.name,
 			email: Faker::Internet.unique.email,
 			picture: Faker::Avatar.image,
 			semester_id: n % NUM_SEMESTER + 1,
+			password: "password",
 		)
 		s.semester = Semester.find(s.semester_id)
 		s.id = n
@@ -60,7 +71,6 @@ def make_students
 end
 
 def make_weeks
-	Week.delete_all
 	initial_date = Faker::Date.between(2.days.ago, Date.today)
 	1.upto(NUM_WEEK) do |n|
 		w = Week.create(
@@ -77,7 +87,6 @@ def make_weeks
 end
 
 def make_resources
-	Resource.delete_all
 	1.upto(NUM_RESOURCE) do |n|
 		r = Resource.create(
 			link: "https://" + Faker::Internet.domain_word + "." + Faker::Internet.domain_suffix,
@@ -92,7 +101,6 @@ def make_resources
 end
 
 def make_assignments
-	Assignment.delete_all
 	1.upto(NUM_ASSIGNMENT) do |n|
 		a = Assignment.create(
 			title: Faker::Hipster.sentence(3),
@@ -109,7 +117,6 @@ def make_assignments
 end
 
 def make_attendances
-	Attendance.delete_all
 	1.upto(NUM_ATTENDANCES) do |n|
 		a = Attendance.create(
 			status: n % 4,
@@ -125,7 +132,6 @@ def make_attendances
 end
 
 def make_submissions
-	Submission.delete_all
 	1.upto(NUM_SUBMISSIONS) do |n|
 		s = Submission.create(
 			score: [n % 6, nil].sample,
@@ -145,7 +151,6 @@ end
 
 # Currently assuming no group projects
 def make_student_submissions
-	StudentSubmission.delete_all
 	1.upto(NUM_SUBMISSIONS) do |n|
 		s = StudentSubmission.create()
 		s.student = Student.find(n % NUM_STUDENT + 1)
@@ -159,6 +164,7 @@ end
 # 2. Students, Weeks
 # 3. Resources, Assignments, Attendances
 # 4. Submissions, student_submissions
+delete_all_resources
 make_semesters
 make_admins
 make_students
