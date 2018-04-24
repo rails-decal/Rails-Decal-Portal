@@ -75,32 +75,6 @@ h1, h2, h3, h4, h5, h6, p {
 		position: relative;
 	}
 
-	input, textarea {
-		padding: 8px 8px;
-		box-sizing: border-box;
-		outline-color: rgba(0, 0, 0, 0);
-		-webkit-appearance: none;
-		border: 0px solid $gray;
-		background: $off-white;
-
-		&:not(.checkbox, input[type="submit"]) {
-			width: 100%;
-		}
-
-		&[type="submit"] {
-			margin-top: 24px;
-			color: $white;
-			background: $blue;
-			padding: 8px 16px;
-			cursor: pointer;
-			border-radius: 4px;
-		}
-
-		&:focus {
-			outline-color: $blue;
-		}
-	}
-
 	.horizontal {
 		display: flex;
 		flex: 1;
@@ -123,24 +97,46 @@ h1, h2, h3, h4, h5, h6, p {
 		}
 	}
 
-	.field-title, .field-caption {
-		margin: 24px 0 6px;
-		color: $gray;
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
+	
+}
+
+input, textarea {
+	padding: 8px 8px;
+	box-sizing: border-box;
+	outline-color: rgba(0, 0, 0, 0);
+	-webkit-appearance: none;
+	border: 0px solid $gray;
+	background: $off-white;
+
+	&:not(.checkbox, input[type="submit"]) {
+		width: 100%;
 	}
 
-	.field-caption {
-		font-size: 0.5em;
-		margin-top: 0px;
+	&[type="submit"] {
+		margin-top: 24px;
+		color: $white;
+		background: $blue;
+		padding: 8px 16px;
+		cursor: pointer;
+		border-radius: 4px;
+	}
+
+	&:focus {
+		outline-color: $blue;
 	}
 }
 
-form {
-	.hidden-field {
-		display: none;
-	}
+.field-title, .field-caption {
+	margin: 24px 0 6px;
+	color: $gray;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+.field-caption {
+	font-size: 0.5em;
+	margin-top: 0px;
 }
 
 .close, .delete {
@@ -176,6 +172,10 @@ form {
 	transition: 0.4s;
 	cursor: pointer;
 	overflow: hidden;
+
+	ul {
+		list-style-type: none;
+	}
 }
 
 .alert-alert, #error_explanation {
