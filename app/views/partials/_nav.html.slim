@@ -4,8 +4,13 @@ nav
 	div#user-name
 		/ fix this later
 		= "Jemma Kwak"
-	- puts user_signed_in
 	- if user_signed_in
+		- if is_admin
+				div#user-name
+					= "Admin Account"
+		- else
+				div#user-name
+					= "Student Account"
 		div.nav-item#dashboard
 			a Dashboard
 		div.nav-item#assignments
@@ -17,5 +22,7 @@ nav
 		div.nav-item#signout
 			= link_to "Sign Out", sign_out_path
 	- else
+		div#user-name
+			= "Auditor Account"
 		div.nav-item#signin
 			= link_to "Sign in", sign_in_path

@@ -30,13 +30,18 @@ class ApplicationController < ActionController::Base
   end
 
   def is_admin
+    @current_user = get_current_user
     if @current_user and @current_user.is_a? Admin
+      puts "Is admin!"
       true
     else
+      puts "Is not admin :("
       false
     end
   end
 
   helper_method :user_signed_in
+  helper_method :is_admin
+  helper_method :get_current_user
 
 end

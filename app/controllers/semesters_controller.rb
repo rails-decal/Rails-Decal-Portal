@@ -1,6 +1,4 @@
 class SemestersController < ApplicationController
-		
-
 	def index
 
 	end
