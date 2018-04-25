@@ -21,6 +21,7 @@ class AssignmentsController < ApplicationController
 		assignment = Assignment.create(assignment_params)
 		assignment.week_id = week.id
 		if assignment.save
+			flash[:notice] = "New assignment created!"
 			redirect_to semester_assignments_path semester_id: week.semester_id
 		else
 			puts week.errors.full_messages.to_sentence
@@ -41,11 +42,14 @@ class AssignmentsController < ApplicationController
 		assignment.week = week
 
 		assignment.save
+
+		flash[:notice] = "Changes saved"
 		redirect_to semester_assignments_path semester_id: semester.id
 	end
 
 	def destroy
 		Assignment.find(params[:id]).destroy
+		flash[:alert] = "Assignment deleted"
 		redirect_to semester_assignments_path semester_id: params[:semester_id]
 	end
 

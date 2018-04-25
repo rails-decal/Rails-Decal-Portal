@@ -5,6 +5,7 @@ class WeeksController < ApplicationController
 		week = Week.create(week_params)
 		week.semester_id = params[:semester_id]
 		if week.save
+			flash[:notice] = "Week created!"
 			redirect_to semester_path params[:semester_id]
 		else
 			flash[:error] = week.errors.full_messages.to_sentence
@@ -15,8 +16,11 @@ class WeeksController < ApplicationController
 	def update
 		week = Week.find(params[:id])
 		week.update! week_params
-		week.save
-
+		if week.save
+			flash[:notice] = "Changes saved"
+		else
+			flash[:error] = week.errors.full_messages.to_sentence
+		end
 		redirect_to semester_path params[:semester_id]
 	end
 
@@ -24,6 +28,7 @@ class WeeksController < ApplicationController
 		semester = Semester.find(params[:semester_id])
 		week = Week.find(params[:id])
 		week.destroy
+		flash[:alert] = "Week succesfully deleted"
 		redirect_to semester
 	end
 
