@@ -11,5 +11,6 @@ class StudentsController < ApplicationController
 		@week = @assignment.week
 		@attendance = nil # todo: update this
 		@graded_assignment = Submission.where(graded: true).order(:updated_at).last
+		@all_graded = @current_user.submissions.where(graded: true)
 	end
 end

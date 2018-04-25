@@ -30,8 +30,12 @@ main.dashboard
 			div.card-title Grades
 			div.info
 				h3.info-title
-					view Score:
+					view Total Score:
 					br
-					= @graded_assignment.score.to_s + " / " + @graded_assignment.assignment.points.to_s
-				h6.caption = "Homework " + @graded_assignment.assignment.week.week_number.to_s
+					= @all_graded.inject(0.0) { |sum, s| sum + s.score }.to_s + " / " + @all_graded.inject(0.0) { |sum, s| sum + s.assignment.points }.to_s
+					br
+				h6.caption 
+					= "Recent grades" 
+					br
+					= "Homework #{@graded_assignment.assignment.week.week_number.to_s}: #{@graded_assignment.score.to_s} / #{@graded_assignment.assignment.points.to_s}"
 			= link_to "View Details", semester_assignments_path(semester_id: @semester.id), class: "button"
