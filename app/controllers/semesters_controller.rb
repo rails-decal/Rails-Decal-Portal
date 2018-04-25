@@ -1,14 +1,34 @@
 class SemestersController < ApplicationController
-	before_action :set_current_user
 
-	def set_current_user
-		@current_user = get_current_user
-	end
 	def index
-		redirect_to controller: 'semesters', action: 'show', id: 1
+		authenticate_admin!
+		if params[:semester_id]
+			@semester = Semester.find(params[:semester_id])
+		end
+		@semesters = Semester.all.sort_by(&:created_at)
+	end
+
+	def latest
+		sorted = Semester.all.sort_by {|x| [x.active ? 1 : 0, x.created_at] }
+		if sorted.count == 0
+			render 'create'
+		else
+			redirect_to controller: 'semesters', action: 'show', id: sorted.last.id
+		end
 	end
 
 	def create
+		authenticate_admin!
+	end
+
+	def activate
+		authenticate_admin!
+		Semester.all.each { |e|
+			puts e.id.to_s == params[:id]
+			e.active = e.id.to_s == params[:id]
+			e.save!
+		}
+		redirect_to controller: 'semesters', action: 'show', id: params[:id]
 	end
 
 	def new
