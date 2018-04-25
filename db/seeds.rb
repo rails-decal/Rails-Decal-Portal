@@ -43,7 +43,7 @@ end
 def make_admins
 	1.upto(NUM_ADMIN) do |n|
 		a = Admin.create(
-			active: true,
+			active: false,
 			email: "admin#{n}@email.com",
 			name: Faker::Name.unique.name,
 			office_hours: Faker::RickAndMorty.quote,
