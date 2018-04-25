@@ -6,17 +6,18 @@
 	padding: 0 !important;
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-end;
+	justify-content: flex-start;
 	align-content: center;
 	box-sizing: border-box;
 	position: relative;
 
 	.assignment-info {
 		padding: 32px;
-		padding-bottom: 16px;
+		padding-bottom: 12px;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+		flex-grow: 1;
 
 		.week-number {
 			font-weight: 400;
@@ -29,9 +30,6 @@
 			font-weight: 700;
 		}
 
-		.week-title {
-			height: 3em;
-		}
 
 		.assignment-status {
 			width: 100%;
@@ -59,8 +57,8 @@
 		align-items: flex-end;
 		position: relative;
 		width: 100%;
-		flex-grow: 2;
-		flex-shrink: 2;
+		flex-grow: 0;
+		justify-self: end;
 
 		a, .submit-assignment-button  {
 			padding: 16px 16px;
@@ -93,18 +91,24 @@
 	}
 
 	.grade-info {
-		margin: 32px;
+		margin: 16px;
 		text-align: center;
 
 		h4 {
 			margin: 0;
 		}
 
-		.grade-score {
-			font-size: 2em;
+		.main {
+			.graded {
+				font-size: 1.8em;
+			}
+
+			.ungraded {
+				font-size: 1em;
+			}
 		}
 
-		.total-points {
+		.sub {
 			margin-top: 8px;
 			font-size: 0.8em;
 		}
@@ -177,4 +181,3 @@
 		}
 	}
 }
-	
