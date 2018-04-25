@@ -59,7 +59,7 @@ def make_students
 	1.upto(NUM_STUDENT) do |n|
 		s = Student.create(
 			name: Faker::Name.unique.name,
-			email: Faker::Internet.unique.email,
+			email: "student" + n.to_s + "@email.com",
 			picture: Faker::Avatar.image,
 			semester_id: n % NUM_SEMESTER + 1,
 			password: "password",
