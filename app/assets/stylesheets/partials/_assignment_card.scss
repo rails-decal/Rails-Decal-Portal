@@ -74,10 +74,11 @@
 			text-decoration: none;
 			position: relative;
 			cursor: pointer;
-			width: 50%;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
+			flex-basis: 50%;
+			flex-grow: 1;
 
 			&:hover {
 				opacity: 1;
