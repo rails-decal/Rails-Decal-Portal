@@ -2,4 +2,5 @@
 main
   h3.semester = @semester.title
   h1.title Attendance
-  = render partial: "partials/student_attendance", collection: @student.attendances.sort_by {|attendance| attendance.week.week_number }
+  div.attendance-container
+    = render partial: "partials/student_attendance", collection: @student.attendances.sort_by {|attendance| attendance.week.week_number }
