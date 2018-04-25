@@ -75,42 +75,20 @@ h1, h2, h3, h4, h5, h6, p {
 		position: relative;
 	}
 
-	input, textarea {
-		padding: 8px 8px;
-		width: 100%;
-		box-sizing: border-box;
-		outline-color: rgba(0, 0, 0, 0);
-		-webkit-appearance: none;
-		border: 0px solid $gray;
-		background: $off-white;
-
-
-		&[type="submit"] {
-			margin-top: 24px;
-			color: $white;
-			background: $blue;
-			padding: 8px;
-			cursor: pointer;
-		}
-
-		&:focus {
-			outline-color: $blue;
-		}
-	}
-
 	.horizontal {
 		display: flex;
 		flex: 1;
 		flex-wrap: wrap;
-		width: 100%;
+		width: 75%;
 		justify-content: space-between;
+		align-items: flex-start;
 
 		div {
 			margin-right: 16px;
 			display: flex;
 			flex-direction: column;
 			flex: 1;
-			// max-width: 30%;
+			max-width: 40%;
 
 			* {
 				flex-shrink: 1;
@@ -119,13 +97,46 @@ h1, h2, h3, h4, h5, h6, p {
 		}
 	}
 
-	.field-title {
-		margin: 24px 0 6px;
-		color: $gray;
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
+	
+}
+
+input, textarea {
+	padding: 8px 8px;
+	box-sizing: border-box;
+	outline-color: rgba(0, 0, 0, 0);
+	-webkit-appearance: none;
+	border: 0px solid $gray;
+	background: $off-white;
+
+	&:not(.checkbox, input[type="submit"]) {
+		width: 100%;
 	}
+
+	&[type="submit"] {
+		margin-top: 24px;
+		color: $white;
+		background: $blue;
+		padding: 8px 16px;
+		cursor: pointer;
+		border-radius: 4px;
+	}
+
+	&:focus {
+		outline-color: $blue;
+	}
+}
+
+.field-title, .field-caption {
+	margin: 24px 0 6px;
+	color: $gray;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+.field-caption {
+	font-size: 0.5em;
+	margin-top: 0px;
 }
 
 .close, .delete {
@@ -149,6 +160,32 @@ h1, h2, h3, h4, h5, h6, p {
 	border-radius: 4px;
 }
 
+.alert, #error_explanation {
+	position: fixed;
+	top:0%;
+	z-index: 10;
+	padding: 16px 24px;
+	box-sizing: border-box;
+	width: 100%;
+	color: $white;
+	text-align: center;
+	transition: 0.4s;
+	cursor: pointer;
+	overflow: hidden;
+
+	ul {
+		list-style-type: none;
+	}
+}
+
+.alert-alert, #error_explanation {
+	background: $red;
+} 
+
+.alert-notice {
+	background: $green;
+	color: $black;
+}
 
 .overlay {
 	display: none;

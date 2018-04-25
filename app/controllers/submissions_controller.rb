@@ -1,18 +1,21 @@
 class SubmissionsController < ApplicationController
 	before_action :authenticate!
 
-	def new
-		@assignment = Assignment.find(params[:assignment_id])
-		@submission = Submission.new
+	def index
+		# Shows submissions that are assigned to the grader
+		@submissions = Submission.where(admin_id: @current_user.id).where.not(graded: true)
+		@semester = Semester.find(params[:semester_id])
 	end
 
 	def create
+		puts params
 		assignment = Assignment.find(params[:assignment_id])
 		submission = Submission.create(submission_params)
 		submission.assignment = assignment
 		submission.date = DateTime.now
 		submission.admin = Admin.find(Submission.last.id % Admin.count + 1)
-		# submission.user = user or something like that, do with devise
+		student = Student.find(params[:student_id])
+		submission.students.push(student)
 		semester_id = Week.find(assignment.week_id).semester_id
 		if submission.save
 			redirect_to semester_assignments_path semester_id: semester_id
@@ -22,21 +25,21 @@ class SubmissionsController < ApplicationController
 		end
 	end
 
-	def edit
-		@assignment = Assignment.find(params[:assignment_id])
-		@submission = Submission.find(params[:id])
-	end
-
 	def update
 		submission = Submission.find(params[:id])
 		submission.update! submission_params
-		submission.date = DateTime.now
+		semester = submission.assignment.week.semester
+		if params[:submission][:score] != nil
+			submission.graded = true
+			return_path = semester_submissions_path(semester_id: semester.id)
+		else
+			submission.date = DateTime.now
+			return_path = semester_assignments_path(semester_id: semester.id)
+		end
 
 		submission.save
 
-		assignment = Assignment.find(params[:assignment_id])
-		semester_id = Week.find(assignment.week_id).semester_id
-		redirect_to semester_assignments_path semester_id: semester_id
+		redirect_to return_path
 	end
 
 	def destroy
@@ -48,6 +51,7 @@ class SubmissionsController < ApplicationController
 
 	private
 	def submission_params
-		params.require(:submission).permit(:link)
+		params.require(:submission).permit(:link, :score, :comment)
 	end
+
 end

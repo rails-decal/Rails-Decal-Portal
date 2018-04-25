@@ -1,26 +1,28 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
+<div class="card modal-form login" style="display: block; top: 50%; margin: 0;">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <h3> Student Login <h3>
     <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <h6 class="field-title"> email</h6>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
-  <% end -%>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+    <div class="field">
+      <h6 class="field-title"> password</h6>
+      <%= f.password_field :password, autocomplete: "off" %>
+    </div>
 
-<%= render "students/shared/links" %>
+    <% if devise_mapping.rememberable? -%>
+      <div class="field" id="remember">
+        <%= f.check_box :remember_me, class: "checkbox", style: "padding: 0; width: 16px; height: 16px;"%>
+        <h6 class="field-title"> remember me</h6>       
+
+      </div>
+    <% end -%>
+
+    <div class="actions">
+      <%= f.submit "Log in", class: "button" %>
+    </div>
+  <% end %>
+
+  <%= render "students/shared/links" %>
+</div>
