@@ -17,6 +17,8 @@ nav
 		- if is_admin
 			div.nav-item#gradebook
 				= link_to "Gradebook", semester_submissions_path(semester_id: @semester.id)
+			div.nav-item#roster
+				= link_to "Roster", semester_students_path(semester_id: @semester.id)
 		div.nav-item#signout
 			= link_to "Sign Out", sign_out_path
 	- else
