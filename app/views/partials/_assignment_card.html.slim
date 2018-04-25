@@ -41,29 +41,29 @@ div.assignment.card
 		= link_to "×", semester_assignment_path(semester_id: @semester.id, id: assignment_card.id), method: :delete, class: "delete"
 				
 	div.assignment-buttons
-		/ TODO: possibly make these dependent on whether the user has completed their submission. 
 		a href="#{assignment_card.link}" target="_blank" View Assignment
 
-		ruby:
-			if !is_admin && has_submission
-				s = submission
-				text = "Edit Submission"
-			else
-				s = Submission.new
-				text = "Submit Link"
-			end
+		- if !is_admin
+			ruby:
+				if has_submission
+					s = submission
+					text = "Edit Submission"
+				else
+					s = Submission.new
+					text = "Submit Link"
+				end
 
-		div.submit-assignment-button 
-			= text
-			div.submit-assignment-form
-				
-				h6.field-title 
-					= text
-				= form_for [assignment_card, s] do |f|
-					= f.text_field :link, required: true
-					- if text == "Submit Link" && !is_admin
-						= hidden_field_tag 'student_id', current_student.id
-				  	= f.submit "Submit"
+			div.submit-assignment-button 
+				= text
+				div.submit-assignment-form
+					
+					h6.field-title 
+						= text
+					= form_for [assignment_card, s] do |f|
+						= f.text_field :link, required: true
+						- if text == "Submit Link"
+							= hidden_field_tag 'student_id', current_student.id
+					  	= f.submit "Submit"
 
 				  	
 -if is_admin

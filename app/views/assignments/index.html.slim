@@ -4,8 +4,9 @@ main
 	h1.title Assignments
 	div#assignments-content
 		= render partial: "partials/assignment_card", locals: {is_admin: is_admin}, collection: @assignments
-		div.assignment.card.add-assignment-button.add 
-			div + Assignment
+		- if is_admin
+			div.assignment.card.add-assignment-button.add 
+				div + Assignment
 
 	-if is_admin
 		div.modal-form.new-assignment

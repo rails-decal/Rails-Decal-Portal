@@ -18,11 +18,12 @@
 
 // Unclear but this variables import isn't working, pls include @ top of every scss file
 @import 'partials/variables';
+@import 'partials/common';
 
 @import 'partials/nav';
 @import 'partials/curriculum_week';
 @import 'partials/assignment_card';
+@import 'partials/submission';
 
-@import 'partials/common';
 
 
