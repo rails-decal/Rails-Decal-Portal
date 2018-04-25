@@ -1,61 +1,93 @@
+ruby:
+	if !is_admin
+		has_submission = current_student.submissions.exists?(assignment_id: assignment_card.id)
+		has_graded = false
+		if has_submission
+			submission = current_student.submissions.where(assignment_id: assignment_card.id).last
+			has_graded = submission.graded
+		end
+	end
+
 div.assignment.card
 	div.assignment-info
 		h3.week-number
 			= "Homework " + assignment_card.week.week_number.to_s
-			i.material-icons.edit-assignment-button.edit-button edit
+			- if is_admin
+				i.material-icons.edit-assignment-button.edit-button edit
 		p.due-date
 			= "Due " + assignment_card.due_date.to_date.strftime("%a, %b %d").to_s
 		p.week-title
 			= assignment_card.title 
-		p.assignment-description
-			= assignment_card.description
-		div.grade-info
-			div.grade-score 5 / 5
-		div.assignment-status
-			/ replace with submission logic
-			p 
-				= "Submission Received"
-			/ include submission logic
-			p Feedback
-	= link_to "×", semester_assignment_path(semester_id: @semester.id, id: assignment_card.id), method: :delete, class: "delete"
-			
+		- if assignment_card.description != ""
+			p.assignment-description
+				= assignment_card.description
+		- if !is_admin
+			div.grade-info
+				- if has_graded
+					div.grade-score
+						= submission.score.to_s + " / " + assignment_card.points.to_s
+				- else
+					div.ungraded No grade available
+					div.total-points 
+						= "Total points: " + assignment_card.points.to_s
+			div.assignment-status
+				p
+					- if has_submission
+						= link_to "View Submission", submission.link, target: "_blank"
+					- else
+						= "No Submission"
+				p Feedback
+	-if is_admin
+		= link_to "×", semester_assignment_path(semester_id: @semester.id, id: assignment_card.id), method: :delete, class: "delete"
+				
 	div.assignment-buttons
-		/ TODO: possibly make these dependent on whether the user has completed their submission. 
 		a href="#{assignment_card.link}" target="_blank" View Assignment
 
-		div.submit-assignment-button 
-			View Submit Assignment
-			div.submit-assignment-form
-				h6.field-title submission link
-				/ can resuse edit and new submission here, include control statements
-				ruby:
+		- if !is_admin
+			ruby:
+				if has_submission
+					s = submission
+					text = "Edit Submission"
+				else
 					s = Submission.new
-				= form_for [assignment_card, s] do |f|
-					= f.text_field :link, required: true
-				  	= f.submit "Submit"
+					text = "Submit Link"
+				end
+
+			div.submit-assignment-button 
+				= text
+				div.submit-assignment-form
+					
+					h6.field-title 
+						= text
+					= form_for [assignment_card, s] do |f|
+						= f.text_field :link, required: true
+						- if text == "Submit Link"
+							= hidden_field_tag 'student_id', current_student.id
+					  	= f.submit "Submit"
 
 				  	
-div.modal-form.edit-assignment
-	div.close &times;
-	h3 
-		= "Edit Homework #{assignment_card.week.week_number}" 
-	= form_for [assignment_card.week, assignment_card] do |f|
-		h6.field-title title
-		= f.text_field :title, :required => true
-		h6.field-title link
-		= f.text_field :link, :required => true
-		h6.field-title description
-		= f.text_area :description, rows: "3"
-		div.horizontal
+-if is_admin
+	div.modal-form.edit-assignment
+		div.close &times;
+		h3 
+			= "Edit Homework #{assignment_card.week.week_number}" 
+		= form_for [assignment_card.week, assignment_card] do |f|
+			h6.field-title title
+			= f.text_field :title, :required => true
+			h6.field-title link
+			= f.text_field :link, :required => true
+			h6.field-title description
+			= f.text_area :description, rows: "3"
 			div
 				h6.field-title due date
 				= f.date_field :due_date
-			div
-				h6.field-title points
-				= f.number_field :points
-			div
-				h6.field-title week
-				= f.select :week_number, @week_numbers, selected: assignment_card.week.week_number
-		br
-	  	= f.submit 
+			div.horizontal
+				div
+					h6.field-title points
+					= f.number_field :points
+				div
+					h6.field-title week
+					= f.select :week_number, @week_numbers, selected: assignment_card.week.week_number
+			br
+		  	= f.submit 
 	

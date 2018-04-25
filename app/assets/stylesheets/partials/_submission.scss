@@ -1,0 +1,31 @@
+@import 'partials/variables';
+.submission {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	position: relative;
+
+	.left {
+		.field-title {
+			margin-top: 8px;
+		}
+
+		.button {
+			text-align: center;
+			background: $blue;
+			color: $white;
+			text-decoration: none;
+			padding: 8px 16px;
+			display: inline-block;
+			position: absolute;
+			bottom: 32px;
+			font-size: 0.7em;
+		}
+	}
+
+	form {
+		.first {
+			margin-top: 8px;
+		}
+	}
+}

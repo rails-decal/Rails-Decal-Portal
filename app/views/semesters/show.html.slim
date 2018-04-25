@@ -3,17 +3,19 @@ main
 	h3.semester = "#{@semester.title}"
 	h1.title Curriculum
 	= render partial: "partials/curriculum_week", locals: {is_admin: is_admin}, collection: @semester.weeks.sort_by {|week| week.week_number}
-	div.modal-form.add-week
-		div.close &times;
-		h3 Create New Week
-		= form_for [@semester, Week.new] do |f|
-			h6.field-title week number
-			= f.number_field :week_number, required: true
-			h6.field-title date
-			= f.date_field :date, required: true
-			h6.field-title title
-			= f.text_field :title, required: true
-			h6.field-title description
-			= f.text_area :description
-			br
-	  		= f.submit
+	- if is_admin
+		div.curriculum.week.card.add.add-week-button + Add New Week
+		div.modal-form.add-week
+			div.close &times;
+			h3 Create New Week
+			= form_for [@semester, Week.new] do |f|
+				h6.field-title week number
+				= f.number_field :week_number, required: true
+				h6.field-title date
+				= f.date_field :date, required: true
+				h6.field-title title
+				= f.text_field :title, required: true
+				h6.field-title description
+				= f.text_area :description
+				br
+		  		= f.submit

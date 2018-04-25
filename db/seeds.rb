@@ -9,8 +9,8 @@
 # 3. Resources, Assignments, Attendances
 # 4. Submissions, student_submissions
 NUM_SEMESTER = 2
-NUM_ADMIN = 5
-NUM_STUDENT = 20
+NUM_ADMIN = 2
+NUM_STUDENT = 5
 NUM_WEEK = 10
 NUM_RESOURCE = 23
 NUM_ASSIGNMENT = 8
@@ -44,7 +44,7 @@ def make_admins
 	1.upto(NUM_ADMIN) do |n|
 		a = Admin.create(
 			active: true,
-			email: Faker::Internet.unique.email,
+			email: "admin#{n}@email.com",
 			name: Faker::Name.unique.name,
 			office_hours: Faker::RickAndMorty.quote,
 			picture: Faker::Avatar.image,
@@ -59,7 +59,7 @@ def make_students
 	1.upto(NUM_STUDENT) do |n|
 		s = Student.create(
 			name: Faker::Name.unique.name,
-			email: Faker::Internet.unique.email,
+			email: "user#{n}@email.com",
 			picture: Faker::Avatar.image,
 			semester_id: n % NUM_SEMESTER + 1,
 			password: "password",

@@ -13,7 +13,7 @@
 
 	.assignment-info {
 		padding: 32px;
-		padding-bottom: 8px;
+		padding-bottom: 16px;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -39,6 +39,11 @@
 			color: $gray;
 			font-weight: 700;
 			line-height: 1.5em;
+			
+			a {
+				text-decoration: none;
+				color: inherit;
+			}
 		}
 	}
 
@@ -51,7 +56,7 @@
 
 	.assignment-buttons {
 		display: flex;
-		align-items: center;
+		align-items: flex-end;
 		position: relative;
 		width: 100%;
 		flex-grow: 2;
@@ -69,6 +74,11 @@
 			text-decoration: none;
 			position: relative;
 			cursor: pointer;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			flex-basis: 50%;
+			flex-grow: 1;
 
 			&:hover {
 				opacity: 1;
@@ -94,6 +104,11 @@
 			font-size: 2em;
 		}
 
+		.total-points {
+			margin-top: 8px;
+			font-size: 0.8em;
+		}
+
 	}
 
 	.delete {
@@ -109,7 +124,9 @@
 	left: 50%;
 	transform: translate(-50%, 16px);
 	top: 100%;
+	z-index: 10;
 	display: none;
+	align-items: center;
 
 	&:before {
 		content: "";
@@ -123,7 +140,6 @@
 		background: inherit;
 		border: 40px solid rgba(0, 0, 0, 0);
 		background-clip: padding-box;
-		// box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.1)
 	}
 
 	h6 {
@@ -132,10 +148,13 @@
 		margin-bottom: 6px;
 		font-weight: 700;
 		text-align: left;
+		margin-top: 6px;
+		color: white;
 	}
 
 	form {
 		display: flex;
+		align-items: flex-start;
 	}
 
 	input {
@@ -144,6 +163,7 @@
 		-webkit-appearance: none;
 		border: 0px solid $gray;
 		background: $white;
+		margin-top: 0;
 
 		&:focus {
 			outline: $blue-highlight;
@@ -151,7 +171,9 @@
 
 		&:last-child {
 			background: $off-white;
+			color: $black;
 			cursor: pointer;
+			border-radius: 0;
 		}
 	}
 }

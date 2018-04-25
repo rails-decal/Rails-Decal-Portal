@@ -1,0 +1,55 @@
+@import "partials/variables";
+
+.profile {
+	width: 600px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: 0 !important;
+	transform: translate(-50%, -50%);
+
+	h3 {
+		display: inline-block;
+	}
+
+	.edit-section {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-end;
+		margin-top: 8px;
+
+		* {
+			margin-right: 16px;
+			margin-top: 0;
+		}
+	}
+
+	.field-title {
+		margin-top: 0;
+	}
+
+	.edit-section-title {
+		margin-top: 24px;
+		padding-bottom: 6px;
+		border-bottom: 2px solid $off-white;
+	}
+
+
+	#submit-edit-profile-button {
+		margin-top: 8px;
+		border-radius: 0;
+		margin-left: -18px;
+	}
+
+	#delete {
+		background: $red;
+	}
+
+	#back {
+		font-size: 0.7em;
+		color: $gray;
+		font-weight: 700;
+		margin-left: 8px;
+	}
+
+}
