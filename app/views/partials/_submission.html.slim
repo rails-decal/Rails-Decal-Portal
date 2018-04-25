@@ -1,0 +1,26 @@
+div.submission.card
+	div.left
+		div.info
+			h3.week-number
+				= "Homework " + submission.assignment.week.week_number.to_s
+			h6.field-title
+				ruby:
+					student_names = []
+					submission.students.each do |s|
+						student_names.push(s.name || s.email)
+					end
+					student_names = student_names.join(", ")
+				= "Submitted by " + student_names
+		= link_to "View Submission", submission.link, target: "blank", class: "button"
+
+	= form_for [submission] do |f| 
+		h6.field-title.first grade
+		h6.field-caption 
+			= "out of " + submission.assignment.points.to_s + " points"
+		= f.number_field :score, :required => true
+		h6.field-title feedback
+		= f.text_area :comment
+		br
+		= f.submit "Save Assignment Grade"
+
+

@@ -4,6 +4,7 @@ main
 	h1.title Curriculum
 	= render partial: "partials/curriculum_week", locals: {is_admin: is_admin}, collection: @semester.weeks.sort_by {|week| week.week_number}
 	- if is_admin
+		div.curriculum.week.card.add.add-week-button + Add New Week
 		div.modal-form.add-week
 			div.close &times;
 			h3 Create New Week
