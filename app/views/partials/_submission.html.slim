@@ -17,7 +17,7 @@ div.submission.card
 		h6.field-title.first grade
 		h6.field-caption 
 			= "out of " + submission.assignment.points.to_s + " points"
-		= f.number_field :score, :required => true
+		= f.number_field :score, required: true, max: submission.assignment.points
 		h6.field-title feedback
 		= f.text_area :comment
 		br
