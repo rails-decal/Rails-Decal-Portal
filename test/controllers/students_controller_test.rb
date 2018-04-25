@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class StudentsControllerTest < ActionDispatch::IntegrationTest
-<<<<<<< HEAD
   setup do
     @student = students(:one)
   end
@@ -46,9 +45,4 @@ class StudentsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to students_url
   end
-=======
-  # test "the truth" do
-  #   assert true
-  # end
->>>>>>> master
 end
