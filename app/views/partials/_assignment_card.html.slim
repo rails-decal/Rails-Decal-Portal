@@ -81,7 +81,8 @@ div.assignment.card
 						  	= f.submit "Submit"
 					- else
 						h6.field-title Feedback
-						= submission.comment
+						p
+							= submission.comment
 
 				  	
 -if is_admin

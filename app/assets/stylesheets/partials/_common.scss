@@ -104,12 +104,12 @@ input, textarea {
 	padding: 8px 8px;
 	box-sizing: border-box;
 	outline-color: rgba(0, 0, 0, 0);
-	-webkit-appearance: none;
 	border: 0px solid $gray;
 	background: $off-white;
 
-	&:not(.checkbox, input[type="submit"]) {
+	&:not(input[type="checkbox"], input[type="submit"]) {
 		width: 100%;
+		-webkit-appearance: none;
 	}
 
 	&[type="submit"] {
