@@ -18,9 +18,10 @@ class SubmissionsController < ApplicationController
 		submission.students.push(student)
 		semester_id = Week.find(assignment.week_id).semester_id
 		if submission.save
+			flash[:notice] = "Assignment submitted!"
 			redirect_to semester_assignments_path semester_id: semester_id
 		else
-			flash[:error] = resource.errors.full_messages.to_sentence
+			flash[:alert] = resource.errors.full_messages.to_sentence
 			redirect_to new_assignment_submission(params[:assignment_id])
 		end
 	end
@@ -31,9 +32,12 @@ class SubmissionsController < ApplicationController
 		semester = submission.assignment.week.semester
 		if params[:submission][:score] != nil
 			submission.graded = true
+
+			flash[:notice] = "Submission graded!"
 			return_path = semester_submissions_path(semester_id: semester.id)
 		else
 			submission.date = DateTime.now
+			flash[:notice] = "Submission updated"
 			return_path = semester_assignments_path(semester_id: semester.id)
 		end
 
@@ -45,6 +49,7 @@ class SubmissionsController < ApplicationController
 	def destroy
 		Submission.find(params[:id]).destroy
 
+		flash[:alert] = "Submission deleted"
 		semester_id = Week.find_by(assignment_id: params[:assignment_id]).semester_id
 		redirect_to semester_assignments_path semester_id: semester_id
 	end

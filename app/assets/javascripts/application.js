@@ -60,7 +60,7 @@ $(document).on('turbolinks:load', function() {
 		})
 
 		$(".edit-assignment-button").click(function() {
-			let modal = $(this).parent().parent().parent().next();
+			let modal = $(this).parent().parent().parent().parent().next();
 			modal.fadeIn();
 			modal.css("top", "50%");
 			$(".overlay").fadeIn();
