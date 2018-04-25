@@ -9,16 +9,14 @@ main.dashboard
 			div.info
 				h3.info-title = "Homework " + @assignment.week.week_number.to_s
 				h6.caption = @assignment.title.to_s
-			div.button.blue 
-				= link_to "View Assignment", @assignment.link, target: "_blank"
+			= link_to "View Assignment", @assignment.link, target: "_blank", class: "button blue"
 
 		div.dashboard.card 
 			div.card-title Curriculum
 			div.info
 				h3.info-title = "Week " + @week.week_number.to_s
 				h6.caption = @week.title.to_s
-			div.button
-				= link_to "View Details", semester_path(id: @semester.id) 
+			= link_to "View Details", semester_path(id: @semester.id), class: "button"
 
 		/ TODO: FIx this
 		div.dashboard.card
@@ -31,7 +29,9 @@ main.dashboard
 		div.dashboard.card
 			div.card-title Grades
 			div.info
-				h3.info-title = "Week " + @graded_assignment.assignment.week.week_number.to_s
-				h6.caption = @graded_assignment.assignment.title.to_s
-			div.button 
-				= link_to "View Details", semester_assignments_path(semester_id: @semester.id)
+				h3.info-title
+					view Score:
+					br
+					= @graded_assignment.score.to_s + " / " + @graded_assignment.assignment.points.to_s
+				h6.caption = "Homework " + @graded_assignment.assignment.week.week_number.to_s
+			= link_to "View Details", semester_assignments_path(semester_id: @semester.id), class: "button"
