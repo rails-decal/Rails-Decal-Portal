@@ -15,11 +15,13 @@ Rails.application.routes.draw do
     resources :assignments, only: [:index, :destroy, :create]
     resources :submissions, only: [:index]
     resources :students, only: [:index]
+    resources :attendances, only: [:index, :create]
   end
 
   resources :weeks do
-    resources :assignments, only: [:create, :new, :edit, :update]
+    resources :assignments, only: [:create, :edit, :update]
     resources :resources
+    resources :attendances, only: [:create]
   end
 
   resources :assignments do
@@ -28,7 +30,4 @@ Rails.application.routes.draw do
 
   resources :submissions, only: [:update]
 
-  resources :students do
-    resources :attendances
-  end
 end

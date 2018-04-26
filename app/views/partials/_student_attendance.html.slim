@@ -1,6 +1,36 @@
-div.attendance
-	h3.week-number
-		= student_attendance.week.week_number
+ruby:
+	week = student_attendance
+	attendance = @current_user.attendances.where(week_id: week)
+	future = false
+	if attendance.empty? 
+		if week.date < DateTime.now + 1.day
+			attendance_status = "absent"
+		else
+			attendance_status = "incomplete"
+			future = true
+		end
+	else
+		attendance_status = attendance.last.status
+	end
+
+div.weekly-attendance
+	- if future
+		h3.week-number.future
+			= "Week #{week.week_number}"
+	- else
+		h3.week-number
+			= "Week #{week.week_number}"
+	- if attendance_status == "present"
+		i.material-icons.present check_circle
+	- elsif attendance_status == "excused"
+		i.material-icons.excused check_circle
+	- elsif attendance_status == "requested"
+		i.material-icons.requested remove_circle
+	- elsif attendance_status == "absent"
+		i.material-icons.absent add_circle
+	- elsif attendance_status == "incomplete"
+		div.attendance-circle.incomplete
+
 
 		/ = student_attendance.comment
 		/ = student_attendance.student.name

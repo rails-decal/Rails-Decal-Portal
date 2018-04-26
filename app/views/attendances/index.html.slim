@@ -1,6 +1,47 @@
 = render "partials/nav"
 main
-  h3.semester = @semester.title
-  h1.title Attendance
-  div.attendance-container
-    = render partial: "partials/student_attendance", collection: @student.attendances.sort_by {|attendance| attendance.week.week_number }
+  div.attendance-main
+	  h3.semester = @semester.title
+	  div.attendance-top-section
+	  	h1.title Attendance
+	  	div.request-absence.button Request an Absence
+	  ruby:
+	  	now = DateTime.now
+	  	current_week = Week.where("date <= :date", date: now).order(:date).last
+	  - if is_admin
+	  	p.attendance-word
+	  		= "Week #{current_week.week_number}'s attendance word is #{current_week.attendance_word}"
+	  - else
+  		div.attendance-form.card
+	  		h3.form-title = "Week #{current_week.week_number} Attendance"
+	  		- if @current_user.attendances.where(week_id: current_week.id).empty?
+	  			= form_tag("/weeks/#{current_week.id}/attendances", method: "post") do
+	  				= text_field_tag :attendance_word, nil, placeholder: "Type in the attendance word here!"
+	  				= submit_tag "Submit Attendance Word"
+	  		- else
+	  			ruby: 
+	  				attendance = @current_user.attendances.where(week_id: current_week.id).last
+  				- if attendance.status == "present"
+		  			p.attendance-status Your attendance has been marked as present!
+		  		- elsif attendance.status == "requested"
+		  			p.attendance-status Your excused absence has been requested
+		  			p.attendance-caption = attendance.comment
+		  		- elsif attendance.status == "excused"
+		  			p.attendance-status Your excused absence has been approved
+		  		- elsif attendance.status == "absent"
+		  			p.attendance-status Your attendance has been marked as absent and/or unexcused.
+
+
+
+		div.attendances-container
+		    = render partial: "partials/student_attendance", collection: @semester.weeks.sort_by {|week| week.week_number }
+
+  div.modal-form.absence-request
+	div.close &times;
+	h3 = "Absence Request"
+	= form_tag("/semesters/#{@semester.id}/attendances", method: "post") do
+		h6.field-title week number
+		= number_field_tag :week_number
+		h6.field-title reason for excuse
+		= text_area_tag :comment
+		= submit_tag "Submit Absence Request"

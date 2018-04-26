@@ -2,7 +2,7 @@ div.student.card
 	div.viewable
 		div.left
 			div#user-pic
-				= image_tag(student.picture.present? ? student.picture : "default_pro_pic.jpg")
+				= image_tag(student.picture.present? ? student.picture : "default_pro_pic.svg")
 			p.name = student.name
 		div.right
 			ruby:

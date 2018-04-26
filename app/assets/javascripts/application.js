@@ -73,11 +73,18 @@ $(document).on('turbolinks:load', function() {
 			$(".overlay").fadeIn();
 		});
 
+		$(".request-absence").click(function() {
+			let modal = $(this).parent().parent().next();
+			modal.fadeIn();
+			modal.css("top", "50%");
+			$(".overlay").fadeIn();
+		});
+
 		$(".week-assignment").hover(function() {
 			$(this).find(".submit-assignment-form").fadeIn();
 		}, function() {
 			$(this).find(".submit-assignment-form").fadeOut();
-		})
+		});
 
 
 		$(".overlay, .close").click(function() {
@@ -85,11 +92,11 @@ $(document).on('turbolinks:load', function() {
 			setTimeout(function() {
 				$(".modal-form, .overlay").fadeOut();
 			}, 100)
-		})
+		});
 
 		$(".student .bottom").click(function() {
 			$(this).prev().toggleClass("expand");
-		})
+		});
 
 		$(".alert, #error_explanation").click(function() {
 			$(this).fadeOut();

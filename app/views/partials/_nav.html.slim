@@ -1,7 +1,7 @@
 nav
 	- if user_signed_in
 		div#user-pic
-			= image_tag(@current_user.picture.present? ? @current_user.picture : "default_pro_pic.jpg")
+			= image_tag(@current_user.picture.present? ? @current_user.picture : "default_pro_pic.svg")
 		div#user-name
 			= @current_user.name
 			br
@@ -11,7 +11,7 @@ nav
 		div.nav-item#assignments
 			= link_to "Assignments", semester_assignments_path(semester_id: @semester.id)
 		div.nav-item#attendance
-			a Attendance
+			= link_to "Attendance", semester_attendances_path(semester_id: @semester.id)
 		div.nav-item#curriculum
 			= link_to "Curriculum", semester_path(id: @semester.id)
 		- if is_admin
@@ -23,7 +23,7 @@ nav
 			= link_to "Sign Out", sign_out_path
 	- else
 		div#user-pic
-			= image_tag("default_pro_pic.jpg")
+			= image_tag("default_pro_pic.svg")
 		div#user-name
 			= "Auditor Account"
 		div.nav-item#loginadmin

@@ -1,11 +1,47 @@
 // Place all the styles related to the Attendances controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
 @import 'partials/variables';
 
-@import 'partials/nav';
+.attendance-main {
+	.attendance-top-section {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 
-@import 'partials/common';
+		.request-absence {
+			padding: 8px 16px;
+			background: $blue;
+			color: $white;
+			font-size: 0.8em;
+			cursor: pointer;
+		}
+	}
 
-@import 'partials/attendance_card';
+	.attendance-form {
+		position: relative;
+		top: -24px;
+
+		#attendance_word {
+			width: 60%;
+		}
+
+		input[type="submit"] {
+			margin-left: 16px;
+		}
+
+	}
+
+	.attendance-status {
+		margin-top: 24px;
+	}
+
+	.attendances-container {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+}
+
+

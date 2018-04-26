@@ -7,6 +7,7 @@
 #  title       :string
 #  description :text
 #  week_number :integer
+#  attendance_word :string
 #  semester_id :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
