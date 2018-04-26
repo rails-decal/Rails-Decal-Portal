@@ -10,7 +10,7 @@ div.student-submission
 				div.status-container
 					- if student.submissions.where(assignment: a).size != 0
 						ruby: 
-							submission = @current_user.submissions.where(assignment: a).last
+							submission = student.submissions.where(assignment: a).last
 
 						- if submission.graded
 							p = "#{submission.score} / #{a.points}" 
