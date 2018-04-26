@@ -24,7 +24,7 @@
       <h6 class="field-title">confirm password</h6>
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </div>
-
+    <% s = Semester.where(active: true).sort_by {|sem| sem.created_at}.last %>
     <div class="actions">
       <%= f.submit "Sign up" %>
     </div>

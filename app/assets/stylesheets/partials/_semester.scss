@@ -1,0 +1,26 @@
+@import 'variables';
+.semester.card {
+	position: relative;
+  padding: 16px;
+  margin-bottom: 0px;
+  margin-top: 24px;
+
+	.semester-title {
+		margin: 0;
+		margin-bottom: 16px;
+		color: $gray;
+		font-size: 1.2em;
+	}
+
+	a {
+		padding: 8px 16px;
+		text-decoration: none;
+		display: block;
+		color: inherit;
+	}
+}
+
+.add-week-button {
+	width: 100%;
+	margin-top: 0;
+}

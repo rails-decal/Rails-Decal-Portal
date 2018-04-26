@@ -1,5 +1,5 @@
 class SubmissionsController < ApplicationController
-	before_action :authenticate!
+	before_action :authenticate_admin!
 
 	def index
 		# Shows submissions that are assigned to the grader
@@ -13,14 +13,15 @@ class SubmissionsController < ApplicationController
 		submission = Submission.create(submission_params)
 		submission.assignment = assignment
 		submission.date = DateTime.now
-		submission.admin = Admin.find(Submission.last.id % Admin.count + 1)
+		submission.admin = Admin.where(active: true).sample
 		student = Student.find(params[:student_id])
 		submission.students.push(student)
 		semester_id = Week.find(assignment.week_id).semester_id
 		if submission.save
+			flash[:notice] = "Assignment submitted!"
 			redirect_to semester_assignments_path semester_id: semester_id
 		else
-			flash[:error] = resource.errors.full_messages.to_sentence
+			flash[:alert] = resource.errors.full_messages.to_sentence
 			redirect_to new_assignment_submission(params[:assignment_id])
 		end
 	end
@@ -29,22 +30,24 @@ class SubmissionsController < ApplicationController
 		submission = Submission.find(params[:id])
 		submission.update! submission_params
 		semester = submission.assignment.week.semester
+
 		if params[:submission][:score] != nil
 			submission.graded = true
-			return_path = semester_submissions_path(semester_id: semester.id)
+
+			flash[:notice] = "Submission graded!"
 		else
 			submission.date = DateTime.now
-			return_path = semester_assignments_path(semester_id: semester.id)
+			flash[:notice] = "Submission updated"
 		end
-
 		submission.save
 
-		redirect_to return_path
+		redirect_back fallback_location: root_path
 	end
 
 	def destroy
 		Submission.find(params[:id]).destroy
 
+		flash[:alert] = "Submission deleted"
 		semester_id = Week.find_by(assignment_id: params[:assignment_id]).semester_id
 		redirect_to semester_assignments_path semester_id: semester_id
 	end

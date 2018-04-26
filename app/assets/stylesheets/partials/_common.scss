@@ -12,13 +12,29 @@ main {
 	margin-top: 80px;
 	margin-left: 340px;
 	padding-bottom: 80px;
-	position: relative; 
+	position: relative;
 }
 
 // RESET EVERYTHING
 h1, h2, h3, h4, h5, h6, p {
 	margin: 0;
 	font-weight: 400;
+}
+
+#user-pic {
+	height: 72px;
+	width: 72px;
+	border-radius: 50%;
+	position: relative;
+	overflow: hidden;
+	margin: 56px 0 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	img {
+		height: 100%;
+	}
 }
 
 .card {
@@ -95,19 +111,19 @@ h1, h2, h3, h4, h5, h6, p {
 		}
 	}
 
-	
+
 }
 
 input, textarea {
 	padding: 8px 8px;
 	box-sizing: border-box;
 	outline-color: rgba(0, 0, 0, 0);
-	-webkit-appearance: none;
 	border: 0px solid $gray;
 	background: $off-white;
 
-	&:not(.checkbox, input[type="submit"]) {
+	&:not(input[type="checkbox"], input[type="submit"]) {
 		width: 100%;
+		-webkit-appearance: none;
 	}
 
 	&[type="submit"] {
@@ -176,9 +192,9 @@ input, textarea {
 	}
 }
 
-.alert-alert, #error_explanation {
+.alert-alert, .alert-error, #error_explanation {
 	background: $red;
-} 
+}
 
 .alert-notice {
 	background: $green;
@@ -234,6 +250,3 @@ i.edit-button {
 		opacity: 1;
 	}
 }
-
-
-
