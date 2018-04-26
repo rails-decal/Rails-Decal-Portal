@@ -1,0 +1,36 @@
+ruby:
+	week = student_submission
+div.student-submission
+	h4 
+		= "Week #{week.week_number}" 
+	div.week-assignments
+		- week.assignments.each do |a|
+			div.week-assignment
+				h6.field-title Homework
+				div.status-container
+					- if student.submissions.where(assignment: a).size != 0
+						ruby: 
+							submission = student.submissions.where(assignment: a).last
+
+						- if submission.graded
+							p = "#{submission.score} / #{a.points}" 
+						-else
+							p Ungraded
+
+						= link_to "View Submission", submission.link, target: "_blank", class: "view-submission"
+
+						div.submit-assignment-form
+							= form_for [submission] do |f| 
+								h6.field-title.first grade
+								h6.field-caption 
+									= "out of " + submission.assignment.points.to_s + " points"
+								= f.number_field :score, required: true, max: submission.assignment.points
+								h6.field-title feedback
+								= f.text_area :comment
+								br
+								= f.submit "Save Assignment Grade"
+
+
+					- else
+						p No Submission	
+

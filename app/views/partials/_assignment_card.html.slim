@@ -10,33 +10,45 @@ ruby:
 
 div.assignment.card
 	div.assignment-info
-		h3.week-number
-			= "Homework " + assignment_card.week.week_number.to_s
-			- if is_admin
-				i.material-icons.edit-assignment-button.edit-button edit
-		p.due-date
-			= "Due " + assignment_card.due_date.to_date.strftime("%a, %b %d").to_s
-		p.week-title
-			= assignment_card.title 
-		- if assignment_card.description != ""
-			p.assignment-description
-				= assignment_card.description
+		div.top-section
+			h3.week-number
+				= "Homework " + assignment_card.week.week_number.to_s
+				- if is_admin
+					i.material-icons.edit-assignment-button.edit-button edit
+			div.caption-info
+				p.due-date
+					= "Due " + assignment_card.due_date.to_date.strftime("%a, %b %d").to_s
+				p.week-title
+					= assignment_card.title 
+				- if assignment_card.description != ""
+					p.assignment-description
+						= assignment_card.description
 		- if !is_admin
 			div.grade-info
-				- if has_graded
-					div.grade-score
-						= submission.score.to_s + " / " + assignment_card.points.to_s
-				- else
-					div.ungraded No grade available
-					div.total-points 
-						= "Total points: " + assignment_card.points.to_s
-			div.assignment-status
-				p
-					- if has_submission
-						= link_to "View Submission", submission.link, target: "_blank"
+				div.main
+					- if has_graded
+						view.graded
+							= submission.score.to_s + " / " + assignment_card.points.to_s
 					- else
-						= "No Submission"
-				p Feedback
+						view.ungraded No grade available
+
+				div.sub
+					- if has_graded
+						ruby:
+							all_graded = Submission.where(assignment_id: assignment_card.id, graded: true)
+							avg = all_graded.inject(0.0) { |sum, s| sum + s.score } / all_graded.size
+						view Average Score:
+						br
+						= avg.to_s + " / " + assignment_card.points.to_s
+					- else
+						= "Total points: " + assignment_card.points.to_s
+
+			div.assignment-status
+				- if has_submission
+					= link_to "View Submission", submission.link, target: "_blank"
+				- else
+					= "No Submission"
+				
 	-if is_admin
 		= link_to "×", semester_assignment_path(semester_id: @semester.id, id: assignment_card.id), method: :delete, class: "delete"
 				
@@ -45,9 +57,12 @@ div.assignment.card
 
 		- if !is_admin
 			ruby:
-				if has_submission
+				if has_submission && !has_graded
 					s = submission
 					text = "Edit Submission"
+				elsif has_submission && has_graded
+					s = submission
+					text = "View Feedback"
 				else
 					s = Submission.new
 					text = "Submit Link"
@@ -56,14 +71,18 @@ div.assignment.card
 			div.submit-assignment-button 
 				= text
 				div.submit-assignment-form
-					
-					h6.field-title 
-						= text
-					= form_for [assignment_card, s] do |f|
-						= f.text_field :link, required: true
-						- if text == "Submit Link"
-							= hidden_field_tag 'student_id', current_student.id
-					  	= f.submit "Submit"
+					- if text != "View Feedback"
+						h6.field-title 
+							= text
+						= form_for [assignment_card, s] do |f|
+							= f.text_field :link, required: true
+							- if text == "Submit Link"
+								= hidden_field_tag 'student_id', current_student.id
+						  	= f.submit "Submit"
+					- else
+						h6.field-title Feedback
+						p
+							= submission.comment
 
 				  	
 -if is_admin
