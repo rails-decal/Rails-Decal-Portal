@@ -11,10 +11,8 @@ main {
 	width: 600px;
 	margin-top: 80px;
 	margin-left: 340px;
-	// margin: 80px auto;
 	padding-bottom: 80px;
-	position: relative; 
-	// left: 100px;
+	position: relative;
 }
 
 // RESET EVERYTHING
@@ -113,7 +111,7 @@ h1, h2, h3, h4, h5, h6, p {
 		}
 	}
 
-	
+
 }
 
 input, textarea {
@@ -196,7 +194,7 @@ input, textarea {
 
 .alert-alert, .alert-error, #error_explanation {
 	background: $red;
-} 
+}
 
 .alert-notice {
 	background: $green;
@@ -252,6 +250,3 @@ i.edit-button {
 		opacity: 1;
 	}
 }
-
-
-
