@@ -25,7 +25,6 @@
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </div>
     <% s = Semester.where(active: true).sort_by {|sem| sem.created_at}.last %>
-    <%= hidden_field_tag 'semester_id', s.id %>
     <div class="actions">
       <%= f.submit "Sign up" %>
     </div>
