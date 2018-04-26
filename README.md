@@ -2,7 +2,9 @@
 
 ## First off, who we are:
 **Title:** Derailed
+
 **Team Members:** Aivant Goyal, Emily Zhong, Franco Franco, Jemma Kwak
+
 **Demo Link:** [LINK HERE](https://www.google.com)
 
 ## This is our idea
@@ -48,6 +50,6 @@ An application where administrators can post pertinent educational resources (le
 
 ## Here's how we divided the labor
 - **Aivant** worked on getting us all started, creating the initial models and really thinking hard about the relationships between everything. He also set up devise, which is super cool, and worked with authentication.
-- **Emily** worked on the curriculum view (weeks, resources) and the assignments view (assignments, submissions, grading)
-- **Franco** worked on the attendance view and the roster view
+- **Emily** worked on the curriculum view (weeks, resources) and the assignments view (assignments, submissions, grading).
+- **Franco** worked on attendance and the all-controlling roster view.
 - **Jemma** worked on creating a cohesive front end and styling.
