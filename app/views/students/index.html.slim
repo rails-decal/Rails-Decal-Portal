@@ -1,0 +1,5 @@
+= render "partials/nav"
+main
+	h3.semester = "#{@semester.title}"
+	h1.title Roster
+	= render partial: "partials/student", collection: @students
