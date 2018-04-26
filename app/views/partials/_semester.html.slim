@@ -1,0 +1,6 @@
+div.semester.card
+	h3.semester-title
+		= semester.title
+		i.material-icons.edit-week-button.edit-button edit
+    - if not semester.active
+      = button_to "Make Active", activate_semester_path(id: semester.id), data: { confirm: "Are you sure?" }, method: :post
