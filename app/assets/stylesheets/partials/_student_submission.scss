@@ -3,9 +3,26 @@
 .student-submission {
 	padding: 16px;
 
-	h4 {
+	.top {
 		padding-bottom: 8px;
 		border-bottom: 2px solid $off-white;
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+
+		h6 {
+			text-align: right;
+			flex-grow: 1;
+		}
+
+		.absent {
+			color: $red;
+		}
+
+		.present {
+			color: $green;
+		}
+
 	}
 
 	.week-assignments{

@@ -71,14 +71,15 @@ def make_students
 end
 
 def make_weeks
-	initial_date = Faker::Date.between(2.days.ago, Date.today)
+	initial_date = Date.today - 3.days
 	1.upto(NUM_WEEK) do |n|
 		w = Week.create(
-			date: initial_date + n.weeks,
+			date: initial_date + n.days,
 			title: Faker::Educator.course,
 			description: Faker::Friends.quote,
 			week_number: n / 2,
 			semester_id: n % NUM_SEMESTER + 1,
+			attendance_word: Faker::Hipster.word,
 		)
 		w.semester = Semester.find(w.semester_id)
 		w.id = n

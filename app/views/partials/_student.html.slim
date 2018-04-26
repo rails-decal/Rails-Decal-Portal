@@ -2,8 +2,10 @@ div.student.card
 	div.viewable
 		div.left
 			div#user-pic
-				= image_tag(student.picture.present? ? student.picture : "default_pro_pic.jpg")
-			p.name = student.name
+				= image_tag(student.picture.present? ? student.picture : "default_pro_pic.svg")
+			div
+				p.name = student.name
+				p.email = student.email
 		- if is_admin
 			div.right
 				ruby:

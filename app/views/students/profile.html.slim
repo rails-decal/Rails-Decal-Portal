@@ -1,0 +1,4 @@
+= render "partials/nav"
+main
+	h1.title = "#{@semester.title} Weekly Curriculum"
+	= render partial: "partials/curriculum_week", collection: @semester.weeks.sort_by {|week| week.week_number} 

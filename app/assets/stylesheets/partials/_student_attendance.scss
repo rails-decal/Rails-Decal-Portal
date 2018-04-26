@@ -1,0 +1,47 @@
+@import "partials/variables";
+.weekly-attendance {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0px 24px 40px; 
+
+	h3.week-number {
+		font-weight: 300;
+		margin-bottom: 12px;
+	}
+
+	i {
+		font-size: 48px;
+
+		&.present {
+			color: $green;
+		}
+		&.excused {
+			color: $yellow;
+		}
+		&.requested {
+			color: $yellow;
+		}
+		&.absent {
+			color: $red;
+			transform: rotate(45deg);
+		}
+	}
+
+	.incomplete {
+		height: 44px;
+		width: 44px;
+		margin: 2px;
+		border-radius: 50%;
+		background: $gray;
+		opacity: 0.3;
+
+	}
+
+	.future {
+		color: $gray;
+	}
+
+
+}

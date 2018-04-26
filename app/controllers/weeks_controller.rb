@@ -34,6 +34,6 @@ class WeeksController < ApplicationController
 
 	private
 	def week_params
-		params.require(:week).permit(:title, :date, :description, :week_number)
+		params.require(:week).permit(:title, :date, :description, :week_number, :attendance_word)
 	end
 end

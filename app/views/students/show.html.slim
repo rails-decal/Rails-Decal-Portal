@@ -18,13 +18,19 @@ main.dashboard
 				h6.caption = @week.title.to_s
 			= link_to "View Details", semester_path(id: @semester.id), class: "button"
 
-		/ TODO: FIx this
 		div.dashboard.card
 			div.card-title Attendance
 			div.info
-				h3.info-title = "Homework " + @assignment.week.week_number.to_s
-				h6.caption = @assignment.title.to_s
-			div.button.blue See Attendance
+				- if @attendance.nil?
+					h3.info-title = "Week #{@attendance_week.week_number.to_s}"
+					= form_tag("/weeks/#{@attendance_week.id}/attendances", method: "post") do
+		  				= text_field_tag :attendance_word, nil, placeholder: "attendance word here!"
+		  				= submit_tag "Submit"
+		  		- else
+		  			h3.info-title = "Total Attendance:"
+		  			h3.info-title = "#{@attendance_num} / #{@attendance_denom}"
+		  			h6.caption = "This week's attendance has been marked as #{@attendance.status}"		
+			= link_to "See Attendance", semester_attendances_path(semester_id: @semester.id), class: "button blue"
 
 		div.dashboard.card
 			div.card-title Grades

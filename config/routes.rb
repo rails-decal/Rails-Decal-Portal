@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admins
   devise_for :students
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "semesters#latest"
@@ -15,13 +16,14 @@ Rails.application.routes.draw do
     resources :assignments, only: [:index, :destroy, :create]
     resources :submissions, only: [:index]
     resources :students, only: [:index, :show]
+    resources :attendances, only: [:index, :create]
   end
 
   resources :weeks do
-    resources :assignments, only: [:create, :new, :edit, :update]
+    resources :assignments, only: [:create, :edit, :update]
     resources :resources
+    resources :attendances, only: [:create]
   end
-
 
   resources :assignments do
     resources :submissions, only: [:create, :update, :destroy]
