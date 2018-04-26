@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 20180425181838) do
 
   create_table "admins", force: :cascade do |t|
     t.boolean "active", default: true
-    t.string "email"
+    t.string "email", default: "", null: false
     t.string "name"
     t.string "office_hours"
     t.string "picture"
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20180425181838) do
 
   create_table "students", force: :cascade do |t|
     t.string "name"
-    t.string "email"
+    t.string "email", default: "", null: false
     t.string "picture"
     t.integer "semester_id"
     t.datetime "created_at", null: false
