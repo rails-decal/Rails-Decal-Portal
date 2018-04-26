@@ -42,5 +42,9 @@ class SemestersController < ApplicationController
 	end
 
 	def destroy
+		semester = Semester.find(params[:id])
+		semester.destroy
+		flash[:alert] = "Semester Succesfully deleted"
+		redirect_to '/'
 	end
 end
