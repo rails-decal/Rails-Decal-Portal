@@ -1,0 +1,84 @@
+@import "partials/variables";
+
+.student {
+	position: relative;
+
+	.viewable {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.left {
+			display: flex;
+			align-items: center;
+
+			#user-pic {
+				margin: 16px;
+				margin-left: 0;
+			}
+
+			.name {
+				font-size: 1.2em;
+			}
+
+		}
+
+		.right {
+			.field-title {
+				margin-top: 0;
+			}
+
+			p {
+				font-size: 1.2em;
+			}
+		}
+	}
+
+	.bottom {
+		display: flex;
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		cursor: pointer;
+		padding: 16px;
+
+		.dot {
+			height: 8px;
+			width: 8px;
+			background: $off-white;
+			border-radius: 50%;
+
+			&:before, &:after {
+				display: inline-block;
+				content: "";
+				height: 8px;
+				width: 8px;
+				background: $off-white;
+				border-radius: 50%;
+				position: absolute;
+			}
+
+			&:before {
+				left: 32px;
+			}
+
+			&:after {
+				right: 32px;
+			}
+		}
+	}
+
+	.hidden {
+		overflow: hidden;
+		font-size: 1em;
+		padding-left: 16px;
+		transition: max-height 0.4s; 
+		max-height: 0;
+	}
+
+	.expand {
+		max-height: 1600px;
+	}
+
+}
