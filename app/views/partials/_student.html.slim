@@ -4,17 +4,18 @@ div.student.card
 			div#user-pic
 				= image_tag(student.picture.present? ? student.picture : "default_pro_pic.jpg")
 			p.name = student.name
-		div.right
-			ruby:
-				submissions = student.submissions
-				graded_submissions = student.submissions.where(graded: true)
-				total_score = submissions.inject(0.0) { |sum, s| sum + s.assignment.points } 
-				# denominator only considering graded assignments
-				graded_total_score = graded_submissions.inject(0.0) { |sum, s| sum + s.assignment.points }
-				numerator = graded_submissions.inject(0.0) { |sum, s| sum + s.score }	
+		- if is_admin
+			div.right
+				ruby:
+					submissions = student.submissions
+					graded_submissions = student.submissions.where(graded: true)
+					total_score = submissions.inject(0.0) { |sum, s| sum + s.assignment.points }
+					# denominator only considering graded assignments
+					graded_total_score = graded_submissions.inject(0.0) { |sum, s| sum + s.assignment.points }
+					numerator = graded_submissions.inject(0.0) { |sum, s| sum + s.score }
 
-			h6.field-title Total Score
-			p = "#{numerator} / #{graded_total_score}"
+				h6.field-title Total Score
+				p = "#{numerator} / #{graded_total_score}"
 	div.hidden
 		= render partial: "partials/student_submission", collection: Week.where(semester_id: @semester.id), locals: {student: student, is_admin: is_admin}
 	div.bottom

@@ -1,5 +1,5 @@
 class SubmissionsController < ApplicationController
-	before_action :authenticate!
+	before_action :authenticate_admin!
 
 	def index
 		# Shows submissions that are assigned to the grader

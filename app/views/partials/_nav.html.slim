@@ -1,5 +1,14 @@
 nav
-	- if user_signed_in
+	- if not @semester
+		div#user-pic
+			= image_tag(@current_user.picture.present? ? @current_user.picture : "default_pro_pic.jpg")
+		div#user-name
+			= @current_user.name
+			br
+			= link_to "Edit Profile", edit_profile_path
+		div.nav-item#goback
+			= link_to "Go back", :back, id: "back"
+	- elsif user_signed_in
 		div#user-pic
 			= image_tag(@current_user.picture.present? ? @current_user.picture : "default_pro_pic.jpg")
 		div#user-name
@@ -17,6 +26,8 @@ nav
 		- if is_admin
 			div.nav-item#gradebook
 				= link_to "Gradebook", semester_submissions_path(semester_id: @semester.id)
+			div.nav-item#semesters
+				= link_to "View All Semesters", semesters_path(semester_id: @semester.id)
 			div.nav-item#roster
 				= link_to "Roster", semester_students_path(semester_id: @semester.id)
 		div.nav-item#signout
@@ -26,7 +37,5 @@ nav
 			= image_tag("default_pro_pic.jpg")
 		div#user-name
 			= "Auditor Account"
-		div.nav-item#loginadmin
-			= link_to 'Admin Login', new_admin_session_path, method: :get
-		div.nav-item#loginstudent
-			= link_to 'Student Login', new_student_session_path, method: :get
+		div.nav-item#login
+			= link_to 'Sign In', sign_in_path, method: :get
