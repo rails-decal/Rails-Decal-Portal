@@ -1,8 +1,20 @@
 ruby:
 	week = student_submission
+	attendance = week.attendances.where(student_id: @current_user.id).last
+	
+	if week.date >= DateTime.now + 1.day
+		attendance_status = ""
+	elsif attendance.nil?
+		attendance_status = "absent"
+	else
+		attendance_status = attendance.status
+	end
+
 div.student-submission
-	h4 
-		= "Week #{week.week_number}" 
+	div.top
+		h4 = "Week #{week.week_number}" 
+		h6.field-title.attendance class=attendance_status 
+			= attendance_status
 	div.week-assignments
 		- week.assignments.each do |a|
 			div.week-assignment
@@ -33,4 +45,3 @@ div.student-submission
 
 					- else
 						p No Submission	
-

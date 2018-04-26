@@ -3,7 +3,9 @@ div.student.card
 		div.left
 			div#user-pic
 				= image_tag(student.picture.present? ? student.picture : "default_pro_pic.svg")
-			p.name = student.name
+			div
+				p.name = student.name
+				p.email = student.email
 		- if is_admin
 			div.right
 				ruby:

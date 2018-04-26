@@ -19,6 +19,12 @@
 
 			.name {
 				font-size: 1.2em;
+				margin: 8px 0;
+			}
+
+			.email {
+				font-size: 0.9em;
+				color: $gray;
 			}
 
 		}
@@ -78,7 +84,9 @@
 	}
 
 	.expand {
-		max-height: 1600px;
+		max-height: 1000px;
+		overflow: scroll;
+
 	}
 
 }
