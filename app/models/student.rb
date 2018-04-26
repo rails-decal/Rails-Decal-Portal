@@ -21,4 +21,13 @@ class Student < ApplicationRecord
   has_many :attendances
   has_many :student_submissions
   has_many :submissions, :through => :student_submissions
+
+  after_create -> { add_semester(Student.last) }
+
+  private
+
+  def add_semester(student)
+  	student.semester_id = Semester.where(active: true).sort_by {|s| s.created_at}.last.id
+  	student.save!
+  end
 end
