@@ -15,6 +15,8 @@ nav
 			= @current_user.name
 			br
 			= link_to "Edit Profile", edit_profile_path
+
+
 		- if !is_admin
 			div.nav-item#dashboard
 				= link_to "Dashboard", semester_student_path(semester_id: @semester.id, id: @current_user.id)
@@ -27,10 +29,10 @@ nav
 		- if is_admin
 			div.nav-item#gradebook
 				= link_to "Gradebook", semester_submissions_path(semester_id: @semester.id)
-			div.nav-item#semesters
-				= link_to "View All Semesters", semesters_path(semester_id: @semester.id)
 			div.nav-item#roster
 				= link_to "Roster", semester_students_path(semester_id: @semester.id)
+			div.nav-item#semesters
+				= link_to "All Semesters", semesters_path(semester_id: @semester.id)
 		div.nav-item#signout
 			= link_to "Sign Out", sign_out_path
 	- else
