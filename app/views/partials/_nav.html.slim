@@ -10,7 +10,7 @@ nav
 			= link_to "Go back", :back, id: "back"
 	- elsif user_signed_in
 		div#user-pic
-			= image_tag(@current_user.picture.present? ? @current_user.picture : "default_pro_pic.jpg")
+			= image_tag(@current_user.picture.present? ? @current_user.picture : "default_pro_pic.svg")
 		div#user-name
 			= @current_user.name
 			br
