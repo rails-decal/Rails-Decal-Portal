@@ -71,13 +71,24 @@ $(document).on('turbolinks:load', function() {
 			modal.fadeIn();
 			modal.css("top", "50%");
 			$(".overlay").fadeIn();
+		});
+
+		$(".week-assignment").hover(function() {
+			$(this).find(".submit-assignment-form").fadeIn();
+		}, function() {
+			$(this).find(".submit-assignment-form").fadeOut();
 		})
+
 
 		$(".overlay, .close").click(function() {
 			$(".modal-form").css("top", "150%");
 			setTimeout(function() {
 				$(".modal-form, .overlay").fadeOut();
 			}, 100)
+		})
+
+		$(".student .bottom").click(function() {
+			$(this).prev().toggleClass("expand");
 		})
 
 		$(".alert, #error_explanation").click(function() {

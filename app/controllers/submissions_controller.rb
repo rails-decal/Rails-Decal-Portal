@@ -30,20 +30,18 @@ class SubmissionsController < ApplicationController
 		submission = Submission.find(params[:id])
 		submission.update! submission_params
 		semester = submission.assignment.week.semester
+
 		if params[:submission][:score] != nil
 			submission.graded = true
 
 			flash[:notice] = "Submission graded!"
-			return_path = semester_submissions_path(semester_id: semester.id)
 		else
 			submission.date = DateTime.now
 			flash[:notice] = "Submission updated"
-			return_path = semester_assignments_path(semester_id: semester.id)
 		end
-
 		submission.save
 
-		redirect_to return_path
+		redirect_back fallback_location: root_path
 	end
 
 	def destroy

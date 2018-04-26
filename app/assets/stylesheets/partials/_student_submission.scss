@@ -1,0 +1,60 @@
+@import "partials/variables";
+
+.student-submission {
+	padding: 16px;
+
+	h4 {
+		padding-bottom: 8px;
+		border-bottom: 2px solid $off-white;
+	}
+
+	.week-assignments{
+		display: flex;
+		justify-content: flex-start;
+		margin-top: 16px;
+	}
+
+	
+
+	.week-assignment {
+		position: relative;
+		display: flex;
+		padding: 16px;
+		margin-right: 16px;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		background: $off-white;
+
+		.field-title:first-child {
+			margin-top: 0;
+		}
+
+		.status-container {
+			padding: 8px;
+			text-align: center;
+
+			p {
+				margin-bottom: 16px;
+			}
+		}
+
+		.view-submission {
+			text-decoration: none;
+			padding: 8px;
+			color: $white;
+			background: $blue;
+			border-radius: 4px;
+			font-size: 0.8em;
+			cursor: pointer;
+		}
+	}
+
+	.submit-assignment-form {
+		padding: 32px 16px;
+		form {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+}
