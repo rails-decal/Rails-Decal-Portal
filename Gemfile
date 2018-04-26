@@ -39,6 +39,8 @@ gem 'faker'
 # Use slim for HTML
 gem 'slim'
 
+gem 'pg'
+
 # Provides an easy-to-use interface for managing your data.
 gem 'rails_admin', '~> 1.3'
 
