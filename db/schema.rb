@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180418235239) do
+ActiveRecord::Schema.define(version: 20180425181838) do
 
   create_table "admins", force: :cascade do |t|
-    t.boolean "active"
+    t.boolean "active", default: true
     t.string "email"
     t.string "name"
     t.string "office_hours"
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 20180418235239) do
   create_table "submissions", force: :cascade do |t|
     t.integer "score"
     t.datetime "date"
-    t.boolean "graded"
+    t.boolean "graded", default: false
     t.text "comment"
     t.integer "assignment_id"
     t.integer "admin_id"

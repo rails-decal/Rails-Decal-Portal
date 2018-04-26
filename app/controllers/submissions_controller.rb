@@ -13,7 +13,7 @@ class SubmissionsController < ApplicationController
 		submission = Submission.create(submission_params)
 		submission.assignment = assignment
 		submission.date = DateTime.now
-		submission.admin = Admin.find(Submission.last.id % Admin.count + 1)
+		submission.admin = Admin.where(active: true).sample
 		student = Student.find(params[:student_id])
 		submission.students.push(student)
 		semester_id = Week.find(assignment.week_id).semester_id
