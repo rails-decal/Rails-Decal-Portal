@@ -15,8 +15,9 @@ nav
 			= @current_user.name
 			br
 			= link_to "Edit Profile", edit_profile_path
-		div.nav-item#dashboard
-			a Dashboard
+		- if !is_admin
+			div.nav-item#dashboard
+				= link_to "Dashboard", semester_student_path(semester_id: @semester.id, id: @current_user.id)
 		div.nav-item#assignments
 			= link_to "Assignments", semester_assignments_path(semester_id: @semester.id)
 		div.nav-item#attendance

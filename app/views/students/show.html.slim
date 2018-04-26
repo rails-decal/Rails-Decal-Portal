@@ -1,0 +1,41 @@
+= render "partials/nav"
+main.dashboard
+	h3.date = DateTime.now.strftime("%^A, %^B %d")
+	h1.title Dashboard
+
+	div.cards-container
+		div.dashboard.card
+			div.card-title Assignments
+			div.info
+				h3.info-title = "Homework " + @assignment.week.week_number.to_s
+				h6.caption = @assignment.title.to_s
+			= link_to "View Assignment", @assignment.link, target: "_blank", class: "button blue"
+
+		div.dashboard.card 
+			div.card-title Curriculum
+			div.info
+				h3.info-title = "Week " + @week.week_number.to_s
+				h6.caption = @week.title.to_s
+			= link_to "View Details", semester_path(id: @semester.id), class: "button"
+
+		/ TODO: FIx this
+		div.dashboard.card
+			div.card-title Attendance
+			div.info
+				h3.info-title = "Homework " + @assignment.week.week_number.to_s
+				h6.caption = @assignment.title.to_s
+			div.button.blue See Attendance
+
+		div.dashboard.card
+			div.card-title Grades
+			div.info
+				h3.info-title
+					view Total Score:
+					br
+					= @all_graded.inject(0.0) { |sum, s| sum + s.score }.to_s + " / " + @all_graded.inject(0.0) { |sum, s| sum + s.assignment.points }.to_s
+					br
+				h6.caption 
+					= "Recent grades" 
+					br
+					= "Homework #{@graded_assignment.assignment.week.week_number.to_s}: #{@graded_assignment.score.to_s} / #{@graded_assignment.assignment.points.to_s}"
+			= link_to "View Details", semester_assignments_path(semester_id: @semester.id), class: "button"
