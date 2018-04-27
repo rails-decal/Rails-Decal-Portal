@@ -9,7 +9,7 @@
 # 3. Resources, Assignments, Attendances
 # 4. Submissions, student_submissions
 NUM_SEMESTER = 2
-NUM_ADMIN = 2
+NUM_ADMIN = 1
 NUM_STUDENT = 5
 NUM_WEEK = 10
 NUM_RESOURCE = 23

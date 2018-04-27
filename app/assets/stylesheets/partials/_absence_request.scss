@@ -1,0 +1,59 @@
+@import "partials/variables";
+
+.absence-request-week {
+	margin-bottom: 24px;
+	.absence-request-top {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		padding-bottom: 8px;
+		border-bottom: 2px solid $off-white;
+	}
+}
+
+.absence-requests-container {
+	display: none;
+}
+
+.absence-request {
+	margin-bottom: 8px;
+	padding: 16px;
+
+	.info {
+		margin-top: 8px;
+		display: flex;
+		justify-content: space-between;
+
+		.left {
+			margin-right: 24px;
+			display: flex;
+			flex-direction: column;
+			flex-shrink: 0;
+			justify-content: flex-start;
+
+			.name {
+				font-weight: 700;
+				margin-bottom: 4px;
+			}
+
+			.email {
+				font-size: 0.8em;
+				color: $gray;
+			}
+			.button {
+				color: $white;
+				text-decoration: none;
+				background: $blue;
+				padding: 8px 16px;
+				font-size: 0.8em;
+				margin: 8px 0;
+			}
+
+		}
+
+		.reason {
+			line-height: 1.2em;
+		}
+
+	}
+}
