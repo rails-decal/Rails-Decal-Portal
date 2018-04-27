@@ -7,30 +7,43 @@ main.dashboard
 		div.dashboard.card
 			div.card-title Assignments
 			div.info
-				h3.info-title = "Homework " + @assignment.week.week_number.to_s
-				h6.caption = @assignment.title.to_s
-			= link_to "View Assignment", @assignment.link, target: "_blank", class: "button blue"
+			 	- if @assignment.nil?
+			 		h3.info-title = "No Assignments Yet"
+				- else
+					h3.info-title = "Homework " + @assignment.week.week_number.to_s
+					h6.caption = @assignment.title.to_s
+			- if !@assignment.nil?
+				= link_to "View Assignment", @assignment.link, target: "_blank", class: "button blue"
 
-		div.dashboard.card 
+		div.dashboard.card
 			div.card-title Curriculum
 			div.info
-				h3.info-title = "Week " + @week.week_number.to_s
-				h6.caption = @week.title.to_s
-			= link_to "View Details", semester_path(id: @semester.id), class: "button"
+				- if @week.nil?
+					h3.info-title = "No Weeks Yet"
+				- else
+					h3.info-title = "Week " + @week.week_number.to_s
+					h6.caption = @week.title.to_s
+			- if !@week.nil?
+				= link_to "View Details", semester_path(id: @semester.id), class: "button"
 
 		div.dashboard.card
 			div.card-title Attendance
 			div.info
-				- if @attendance.nil?
+				- if @attendance.nil? and !@attendance_week.nil?
 					h3.info-title = "Week #{@attendance_week.week_number.to_s}"
 					= form_tag("/weeks/#{@attendance_week.id}/attendances", method: "post") do
-		  				= text_field_tag :attendance_word, nil, placeholder: "attendance word here!"
-		  				= submit_tag "Submit"
-		  		- else
+		  			= text_field_tag :attendance_word, nil, placeholder: "Attendance Word Here!"
+		  			= submit_tag "Submit"
+		  		- elsif !@attendance.nil?
 		  			h3.info-title = "Total Attendance:"
 		  			h3.info-title = "#{@attendance_num} / #{@attendance_denom}"
-		  			h6.caption = "This week's attendance has been marked as #{@attendance.status}"		
-			= link_to "See Attendance", semester_attendances_path(semester_id: @semester.id), class: "button blue"
+		  			h6.caption = "This week's attendance has been marked as #{@attendance.status}"
+				- else
+					h3.info-title = "No Attendances Yet"
+				/ - else
+				/ 	h3.info-title = "No Weeks Yet"
+			- if !@attendance.nil?
+				= link_to "See Attendance", semester_attendances_path(semester_id: @semester.id), class: "button blue"
 
 		div.dashboard.card
 			div.card-title Grades
@@ -40,8 +53,9 @@ main.dashboard
 					br
 					= @all_graded.inject(0.0) { |sum, s| sum + s.score }.to_s + " / " + @all_graded.inject(0.0) { |sum, s| sum + s.assignment.points }.to_s
 					br
-				h6.caption 
-					= "Recent grades" 
-					br
-					= "Homework #{@graded_assignment.assignment.week.week_number.to_s}: #{@graded_assignment.score.to_s} / #{@graded_assignment.assignment.points.to_s}"
+				- if !@graded_assignment.nil?
+					h6.caption
+						= "Recent grades"
+						br
+						= "Homework #{@graded_assignment.assignment.week.week_number.to_s}: #{@graded_assignment.score.to_s} / #{@graded_assignment.assignment.points.to_s}"
 			= link_to "View Details", semester_assignments_path(semester_id: @semester.id), class: "button"

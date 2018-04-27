@@ -18,7 +18,8 @@ div.student.card
 
 				h6.field-title Total Score
 				p = "#{numerator} / #{graded_total_score}"
-	div.hidden
-		= render partial: "partials/student_submission", collection: Week.where(semester_id: @semester.id), locals: {student: student, is_admin: is_admin}
-	div.bottom
-		div.dot
+	- if is_admin
+		div.hidden
+			= render partial: "partials/student_submission", collection: Week.where(semester_id: @semester.id), locals: {student: student, is_admin: is_admin}
+		div.bottom
+			div.dot

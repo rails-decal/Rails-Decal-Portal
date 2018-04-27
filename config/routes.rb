@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "semesters#latest"
 
-  get 'sign_in', to: 'login#sign_in'
   get 'sign_out', to: 'login#sign_out'
   get 'edit_profile', to: 'login#edit_profile'
   post 'activate_semester', to: 'semesters#activate'

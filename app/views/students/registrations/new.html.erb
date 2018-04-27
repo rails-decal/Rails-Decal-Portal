@@ -12,6 +12,12 @@
      <h6 class="field-title"> email</h6>
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
+
+    <div class="field">
+      <h6 class="field-title"> enrollment code</h6>
+      <%= f.text_field :enrollment_code, autocomplete: "off" %>
+    </div>
+    
     <div class="field">
       <h6 class="field-title"> password</h6>
       <% if @minimum_password_length %>

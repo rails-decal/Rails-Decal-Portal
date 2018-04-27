@@ -1,16 +1,18 @@
 div.semester.card
 	h3.semester-title
 		= semester.title
-		i.material-icons.edit-week-button.edit-button edit
+		i.material-icons.edit-semester-button.edit-button edit
 	  	- if not semester.active
 	    	= button_to "Make Active", activate_semester_path(id: semester.id), data: { confirm: "Are you sure?" }, method: :post
 		= link_to "×", semester_path(id: semester.id), method: :delete, class: "delete"
-	/ div.modal-form.edit-week
-	/ 	div.close &times;
-	/ 	h3
-	/ 		= "Edit Semester #{semester.title}"
-	/ 	= form_for [semester] do |f|
-	/ 		h6.field-title title
-	/ 		= f.text_field :title, :required => true
-	/ 		br
-	/ 	  	= f.submit
+	div.modal-form.edit-semester
+		div.close &times;
+		h3
+			= "Edit Semester #{semester.title}"
+		= form_for [semester] do |f|
+			h6.field-title title
+			= f.text_field :title, :required => true
+			h6.field-title enrollment_code
+			= f.text_field :enrollment_code, :required => true
+			br
+		  	= f.submit

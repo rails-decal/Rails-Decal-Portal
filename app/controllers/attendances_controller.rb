@@ -9,6 +9,11 @@ class AttendancesController < ApplicationController
     if params[:week_id].nil?
       semester = Semester.find(params[:semester_id])
       week = semester.weeks.where(week_number: params[:week_number]).last
+      if week.nil?
+        flash[:alert] = "Can't create attendance request right now. Try again soon!"
+        redirect_back fallback_location: root_path
+        return
+      end
       attendance = Attendance.create({
         status: 2,
         week_id: week.id,

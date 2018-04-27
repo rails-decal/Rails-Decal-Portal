@@ -18,16 +18,28 @@ class Student < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :semester, optional: true
   validates :name, presence: true
+  validate :valid_enrollment, :on => :create
   has_many :attendances
   has_many :student_submissions
   has_many :submissions, :through => :student_submissions
+
+  def valid_enrollment
+    sorted = Semester.all.sort_by {|x| [x.active ? 1 : 0, x.created_at] }
+    if sorted.count == 0
+      errors.add(:base, "There are no available semesters")
+    else
+      if enrollment_code != sorted.last.enrollment_code
+        errors.add(:base, "#{enrollment_code} is not a valid enrollment code")
+      end
+    end
+  end
 
   after_create -> { add_semester(Student.last) }
 
   private
 
   def add_semester(student)
-  	student.semester_id = Semester.where(active: true).sort_by {|s| s.created_at}.last.id
+  	student.semester_id = Semester.all.sort_by {|x| [x.active ? 1 : 0, x.created_at] }.last.id
   	student.save!
   end
 end

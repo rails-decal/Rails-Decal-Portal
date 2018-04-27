@@ -19,7 +19,7 @@ div.assignment.card
 				p.due-date
 					= "Due " + assignment_card.due_date.to_date.strftime("%a, %b %d").to_s
 				p.week-title
-					= assignment_card.title 
+					= assignment_card.title
 				- if assignment_card.description != ""
 					p.assignment-description
 						= assignment_card.description
@@ -37,6 +37,7 @@ div.assignment.card
 						ruby:
 							all_graded = Submission.where(assignment_id: assignment_card.id, graded: true)
 							avg = all_graded.inject(0.0) { |sum, s| sum + s.score } / all_graded.size
+							avg = number_with_precision(avg, precision: 2,  strip_insignificant_zeros: true)
 						view Average Score:
 						br
 						= avg.to_s + " / " + assignment_card.points.to_s
@@ -48,10 +49,10 @@ div.assignment.card
 					= link_to "View Submission", submission.link, target: "_blank"
 				- else
 					= "No Submission"
-				
+
 	-if is_admin
 		= link_to "×", semester_assignment_path(semester_id: @semester.id, id: assignment_card.id), method: :delete, class: "delete"
-				
+
 	div.assignment-buttons
 		a href="#{assignment_card.link}" target="_blank" View Assignment
 
@@ -68,11 +69,11 @@ div.assignment.card
 					text = "Submit Link"
 				end
 
-			div.submit-assignment-button 
+			div.submit-assignment-button
 				= text
 				div.submit-assignment-form
 					- if text != "View Feedback"
-						h6.field-title 
+						h6.field-title
 							= text
 						= form_for [assignment_card, s] do |f|
 							= f.text_field :link, required: true
@@ -84,12 +85,12 @@ div.assignment.card
 						p
 							= submission.comment
 
-				  	
+
 -if is_admin
 	div.modal-form.edit-assignment
 		div.close &times;
-		h3 
-			= "Edit Homework #{assignment_card.week.week_number}" 
+		h3
+			= "Edit Homework #{assignment_card.week.week_number}"
 		= form_for [assignment_card.week, assignment_card] do |f|
 			h6.field-title title
 			= f.text_field :title, :required => true
@@ -108,5 +109,4 @@ div.assignment.card
 					h6.field-title week
 					= f.select :week_number, @week_numbers, selected: assignment_card.week.week_number
 			br
-		  	= f.submit 
-	
+		  	= f.submit

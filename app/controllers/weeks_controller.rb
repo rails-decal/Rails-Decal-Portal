@@ -9,7 +9,7 @@ class WeeksController < ApplicationController
 			redirect_to semester_path params[:semester_id]
 		else
 			flash[:error] = week.errors.full_messages.to_sentence
-			redirect_to new_semester_week_path, semester_id: params[:semester_id]
+			redirect_back(fallback_location: root_path)
 		end
 	end
 

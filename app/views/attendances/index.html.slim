@@ -8,7 +8,7 @@ main
 	  			div.request-absence.button Request an Absence
 	  	ruby:
 		  	now = DateTime.now
-		  	current_week = Week.where("date <= :date", date: now).order(:date).last
+		  	current_week = Week.where("date <= :date", date: now).select { |w| w.semester.id == @semester.id }.sort_by(&:date).last
 	  	- unless current_week.nil?
 		  	- if is_admin
 		  		p.attendance-word
@@ -21,7 +21,7 @@ main
 		  					= text_field_tag :attendance_word, nil, placeholder: "Type in the attendance word here!"
 		  					= submit_tag "Submit Attendance Word"
 		  			- else
-		  				ruby: 
+		  				ruby:
 		  					attendance = @current_user.attendances.where(week_id: current_week.id).last
 	  					- if attendance.status == "present"
 			  				p.attendance-status Your attendance has been marked as present!
