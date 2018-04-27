@@ -13,6 +13,10 @@ main
 		  	- if is_admin
 		  		p.attendance-word
 		  			= "Week #{current_week.week_number}'s attendance word is #{current_week.attendance_word}"
+		  			div.attendance-requests-container.card
+		  				h3.absence-requests-title Absence Requests
+		  				= render partial: "partials/absence_request_week", collection: @semester.weeks
+
 		 	- else
 	  			div.attendance-form.card
 		  			h3.form-title = "Week #{current_week.week_number} Attendance"

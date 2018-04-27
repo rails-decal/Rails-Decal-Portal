@@ -38,12 +38,11 @@ class AttendancesController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def update
-  end
-
-  def destroy
+    attendance = Attendance.find(params[:id])
+    attendance.update(status: "excused")
+    attendance.save!
+    flash[:notice] = "Absence excused"
+    redirect_back fallback_location: semester_attendances_path(semester_id: params[:semester_id])
   end
 end

@@ -1,0 +1,10 @@
+ruby:
+	attendances = absence_request_week.attendances.where(status: "requested")
+div.absence-request-week
+	- if attendances.size > 0
+		div.top
+			h4.week = "Week #{absence_request_week.week_number}"
+			h6.field-title = "#{attendances.size} request#{attendances.size > 1 ? 's' : ''}"
+
+		div.absence-requests-container
+			= render partial: "partials/absence_request", collection: absence_request_week.attendances.where(status: "requested")
