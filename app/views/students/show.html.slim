@@ -40,9 +40,7 @@ main.dashboard
 		  			h6.caption = "This week's attendance has been marked as #{@attendance.status}"
 				- else
 					h3.info-title = "No Attendances Yet"
-				/ - else
-				/ 	h3.info-title = "No Weeks Yet"
-			- if !@attendance.nil?
+			- if !@attendance_week.nil?
 				= link_to "See Attendance", semester_attendances_path(semester_id: @semester.id), class: "button blue"
 
 		div.dashboard.card

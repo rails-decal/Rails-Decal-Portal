@@ -32,16 +32,12 @@ $(document).on('turbolinks:load', function() {
 
 		$(".absence-request-top").click(function() {
 			let view = $(this).next();
-			if(view.css("display") == "flex") {
-				view.css("display", "none")
-			} else {
-				view.css("display", "flex");
-			}
+			view.toggleClass("expand");
 		})
 
 		$(".absence-request-container").click(function() {
 			let view = $(this)
-			view.css("display", "flex")
+			view.toggleClass("expand");
 		})
 
 		$(".add-semester-button").click(function() {

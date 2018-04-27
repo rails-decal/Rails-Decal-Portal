@@ -8,11 +8,20 @@
 		align-items: baseline;
 		padding-bottom: 8px;
 		border-bottom: 2px solid $off-white;
+		cursor: pointer;
 	}
 }
 
 .absence-requests-container {
-	display: none;
+	display: block;
+	max-height: 0;
+	overflow: hidden;
+	transition: 0.4s;
+
+	&.expand {
+		max-height: 1600px;
+		overflow: scroll;
+	}
 }
 
 .absence-request {
