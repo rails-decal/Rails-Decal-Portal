@@ -30,6 +30,20 @@ $(document).on('turbolinks:load', function() {
 			$(".overlay").fadeIn();
 		})
 
+		$(".absence-request-top").click(function() {
+			let view = $(this).next();
+			if(view.css("display") == "flex") {
+				view.css("display", "none")
+			} else {
+				view.css("display", "flex");
+			}
+		})
+
+		$(".absence-request-container").click(function() {
+			let view = $(this)
+			view.css("display", "flex")
+		})
+
 		$(".add-resource").click(function() {
 			let modal = $(this).parent().parent().next();
 			modal.fadeIn();

@@ -2,7 +2,7 @@ ruby:
 	attendances = absence_request_week.attendances.where(status: "requested")
 div.absence-request-week
 	- if attendances.size > 0
-		div.top
+		div.absence-request-top
 			h4.week = "Week #{absence_request_week.week_number}"
 			h6.field-title = "#{attendances.size} request#{attendances.size > 1 ? 's' : ''}"
 

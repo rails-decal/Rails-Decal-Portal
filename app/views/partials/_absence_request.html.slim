@@ -6,7 +6,4 @@ div.absence-request
 			p.name = student.name
 			p.email = student.email
 			= link_to "Mark as Excused", semester_attendance_path(semester_id: @semester.id, id: absence_request.id), class: "button", method: :patch
-		p.reason = "Excuse: " + absence_request.comment
-			
-	
-
+		p.reason = "Excuse: " + absence_request.comment.to_s
