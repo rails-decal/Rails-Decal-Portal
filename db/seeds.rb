@@ -9,13 +9,15 @@
 # 3. Resources, Assignments, Attendances
 # 4. Submissions, student_submissions
 NUM_SEMESTER = 2
-NUM_ADMIN = 2
+NUM_ADMIN = 1
 NUM_STUDENT = 5
 NUM_WEEK = 10
 NUM_RESOURCE = 23
 NUM_ASSIGNMENT = 8
 NUM_ATTENDANCES = 70
 NUM_SUBMISSIONS = 50
+ADMIN_NAMES = ["Ken Chen", "Nhi Quach"]
+IMAGE_NAMES = "https://scontent-lax3-1.xx.fbcdn.net/v/t31.0-1/c0.299.1365.1365/29872103_10213932621061123_9016269137690584348_o.jpg?_nc_cat=0&oh=56849b3109c17d819897b9147c68acfc&oe=5B93C9BD"
 
 def delete_all_resources
 	StudentSubmission.delete_all
@@ -34,6 +36,7 @@ def make_semesters
 		s = Semester.create(
 			title: "Spring " + (2015 + n).to_s,
 			active: n == NUM_SEMESTER,
+			enrollment_code: "12345",
 		)
 		s.id = n
 		s.save
@@ -43,11 +46,11 @@ end
 def make_admins
 	1.upto(NUM_ADMIN) do |n|
 		a = Admin.create(
-			active: false,
+			active: true,
 			email: "admin#{n}@email.com",
-			name: Faker::Name.unique.name,
+			name: ADMIN_NAMES[n - 1],
 			office_hours: Faker::RickAndMorty.quote,
-			picture: Faker::Avatar.image,
+			picture: IMAGE_NAMES,
 			password: "password",
 		)
 		a.id = n
@@ -63,6 +66,7 @@ def make_students
 			picture: Faker::Avatar.image,
 			semester_id: n % NUM_SEMESTER + 1,
 			password: "password",
+			enrollment_code: "12345",
 		)
 		s.semester = Semester.find(s.semester_id)
 		s.id = n

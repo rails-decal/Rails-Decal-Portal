@@ -1,10 +1,12 @@
 class SubmissionsController < ApplicationController
-	before_action :authenticate_admin!
+	before_action :authenticate!
 
 	def index
 		# Shows submissions that are assigned to the grader
-		@submissions = Submission.where(admin_id: @current_user.id).where.not(graded: true)
+		authenticate_admin!
 		@semester = Semester.find(params[:semester_id])
+		@submissions = Submission.where(admin_id: @current_user.id).where.not(graded: true).select { |s| s.semester.id == @semester.id}
+
 	end
 
 	def create
@@ -21,8 +23,8 @@ class SubmissionsController < ApplicationController
 			flash[:notice] = "Assignment submitted!"
 			redirect_to semester_assignments_path semester_id: semester_id
 		else
-			flash[:alert] = resource.errors.full_messages.to_sentence
-			redirect_to new_assignment_submission(params[:assignment_id])
+			flash[:alert] = submission.errors.full_messages.to_sentence
+			redirect_back fallback_location: root_path
 		end
 	end
 

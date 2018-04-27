@@ -20,17 +20,17 @@ nav
 		- if !is_admin
 			div.nav-item#dashboard
 				= link_to "Dashboard", semester_student_path(semester_id: @semester.id, id: @current_user.id)
+		div.nav-item#curriculum
+			= link_to "Curriculum", semester_path(id: @semester.id)
 		div.nav-item#assignments
 			= link_to "Assignments", semester_assignments_path(semester_id: @semester.id)
 		div.nav-item#attendance
 			= link_to "Attendance", semester_attendances_path(semester_id: @semester.id)
-		div.nav-item#curriculum
-			= link_to "Curriculum", semester_path(id: @semester.id)
+		div.nav-item#roster
+			= link_to "Roster", semester_students_path(semester_id: @semester.id)
 		- if is_admin
 			div.nav-item#gradebook
 				= link_to "Gradebook", semester_submissions_path(semester_id: @semester.id)
-			div.nav-item#roster
-				= link_to "Roster", semester_students_path(semester_id: @semester.id)
 			div.nav-item#semesters
 				= link_to "All Semesters", semesters_path(semester_id: @semester.id)
 		div.nav-item#signout
@@ -41,4 +41,4 @@ nav
 		div#user-name
 			= "Auditor Account"
 		div.nav-item#login
-			= link_to 'Sign In', sign_in_path, method: :get
+			= link_to 'Sign In', new_student_session_path, method: :get

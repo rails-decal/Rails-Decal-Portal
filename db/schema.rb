@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180426091636) do
+ActiveRecord::Schema.define(version: 20180426221331) do
 
   create_table "admins", force: :cascade do |t|
     t.boolean "active", default: true
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20180426091636) do
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "enrollment_code"
   end
 
   create_table "student_submissions", force: :cascade do |t|
@@ -98,6 +99,7 @@ ActiveRecord::Schema.define(version: 20180426091636) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.string "enrollment_code"
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
     t.index ["semester_id"], name: "index_students_on_semester_id"

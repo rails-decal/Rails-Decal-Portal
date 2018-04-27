@@ -2,3 +2,14 @@
 main
 	h1.title Semesters
 	= render partial: "partials/semester", collection: @semesters
+	div.curriculum.semester.card.add.add-semester-button + Add Semester
+	div.modal-form.add-semester
+		div.close &times;
+		h3 Create New Week
+		= form_for [Semester.new] do |f|
+			h6.field-title Title
+			= f.text_field :title, required: true
+			h6.field-title Enrollment Code
+			= f.text_field :enrollment_code, required: true
+			br
+				= f.submit

@@ -26,6 +26,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_current_user
+    puts current_student
+    puts current_admin
     @current_user = current_student || current_admin
   end
 
@@ -45,7 +47,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :enrollment_code])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :picture, :office_hours, :active])
   end
 

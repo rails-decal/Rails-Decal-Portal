@@ -44,6 +44,20 @@ $(document).on('turbolinks:load', function() {
 			view.css("display", "flex")
 		})
 
+		$(".add-semester-button").click(function() {
+			let modal = $(this).next();
+			modal.fadeIn();
+			modal.css("top", "50%");
+			$(".overlay").fadeIn();
+		})
+
+		$(".edit-semester-button").click(function() {
+			let modal = $(this).parent().next();
+			modal.fadeIn();
+			modal.css("top", "50%");
+			$(".overlay").fadeIn();
+		})
+
 		$(".add-resource").click(function() {
 			let modal = $(this).parent().parent().next();
 			modal.fadeIn();

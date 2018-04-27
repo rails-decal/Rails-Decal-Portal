@@ -15,8 +15,8 @@
 
 class Assignment < ApplicationRecord
   belongs_to :week
-  has_many :submissions
+  has_many :submissions, :dependent => :destroy
   attr_accessor :week_number
-
+  delegate :semester, :to => :week
   validates :title, :due_date, :link, :points, presence: true
 end

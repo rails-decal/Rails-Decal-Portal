@@ -6,10 +6,10 @@
   margin-top: 24px;
 
 	.semester-title {
-		margin: 0;
-		margin-bottom: 16px;
-		color: $gray;
-		font-size: 1.2em;
+		font-size: 1.5em;
+		margin-bottom: 12px;
+		text-transform: none;
+		color: $black;
 	}
 
 	a {
@@ -20,7 +20,7 @@
 	}
 }
 
-.add-week-button {
+.add-semester-button {
 	width: 100%;
 	margin-top: 0;
 }
