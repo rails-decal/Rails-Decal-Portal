@@ -16,7 +16,7 @@ NUM_RESOURCE = 23
 NUM_ASSIGNMENT = 8
 NUM_ATTENDANCES = 70
 NUM_SUBMISSIONS = 50
-ADMIN_NAMES = ["Ken Chen", "Nhi Quach"]
+ADMIN_NAMES = ["Aivant Goyal", "Ethan Lee"]
 IMAGE_NAMES = "https://scontent-lax3-1.xx.fbcdn.net/v/t31.0-1/c0.299.1365.1365/29872103_10213932621061123_9016269137690584348_o.jpg?_nc_cat=0&oh=56849b3109c17d819897b9147c68acfc&oe=5B93C9BD"
 
 def delete_all_resources
