@@ -5,9 +5,9 @@ main
 		ruby:
 			messages = [
 				"There are no assignments to grade! Time to assign some more :^)",
-				"Good job on getting everything done! You go !!!",
+				"Good job on getting everything done! You go!!!",
 				"Either students aren't turning in their homework, or you're really on top of grading your homework"
 			]
-		div 
+		div
 			= messages.sample
 	= render partial: "partials/submission", locals: {is_admin: is_admin}, collection: @submissions
