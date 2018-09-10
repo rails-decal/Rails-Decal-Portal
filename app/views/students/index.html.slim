@@ -1,6 +1,6 @@
 = render "partials/nav"
 main
-	h3.semester = "#{@semester.title} — #{@students.length}"
+	h3.semester = "#{@semester.title} — #{@students.length} Total Students"
 	h1.title Roster
 
 	= render partial: "partials/student", collection: @students
