@@ -4,7 +4,7 @@ class AdminsController < ApplicationController
 	def index
 		sorted = Semester.all.sort_by {|x| [x.active ? 1 : 0, x.created_at] }
 		@semester = sorted.last
-		@admins = Admin.where(active: true)
+		@admins = Admin.where(active: true).sort_by { |x| x.created_at }
 	end
 
 end
