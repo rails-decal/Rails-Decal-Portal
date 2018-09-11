@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     resources :attendances, only: [:index, :create, :update]
   end
 
+  resources :admins, only: [:index]
+
   resources :weeks do
     resources :assignments, only: [:create, :edit, :update]
     resources :resources

@@ -1,0 +1,6 @@
+= render "partials/nav"
+main
+	h3.semester = "#{@semester.title} — #{@admins.length} Active Teachers"
+	h1.title Rails Teaching Staff
+
+	= render partial: "partials/admin", collection: @admins

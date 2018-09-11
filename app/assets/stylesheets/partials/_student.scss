@@ -27,6 +27,11 @@
 				color: $gray;
 			}
 
+			.officehours {
+        font-size: 0.9em;
+				margin: 8px 0;
+			}
+
 		}
 
 		.right {
@@ -79,7 +84,7 @@
 		overflow: hidden;
 		font-size: 1em;
 		padding-left: 16px;
-		transition: max-height 0.4s; 
+		transition: max-height 0.4s;
 		max-height: 0;
 	}
 
