@@ -10,6 +10,6 @@
 #
 
 class Semester < ApplicationRecord
-  has_many :weeks, :dependent => :destroy
-  has_many :students, :dependent => :destroy
+  has_many :weeks, :dependent => :restrict_with_error
+  has_many :students, :dependent => :restrict_with_error
 end

@@ -15,9 +15,9 @@
 
 class Week < ApplicationRecord
   belongs_to :semester
-  has_many :resources, :dependent => :destroy
-  has_many :attendances, :dependent => :destroy
-  has_many :assignments, :dependent => :destroy
+  has_many :resources, :dependent => :restrict_with_error
+  has_many :attendances, :dependent => :restrict_with_error
+  has_many :assignments, :dependent => :restrict_with_error
 
   validates :date, :title, :week_number, presence: true
 end
