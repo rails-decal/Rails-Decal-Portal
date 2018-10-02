@@ -11,7 +11,9 @@ div.submission.card
 					end
 					student_names = student_names.join(", ")
 				= "Submitted by " + student_names
+			h6.field-date
 				= "Date Submitted: " + submission.date.to_s
+			h6.field-due-date
 				= "Date Due: " + submission.assignment.due_date.to_s
 		= link_to "View Submission", submission.link, target: "blank", class: "button"
 
