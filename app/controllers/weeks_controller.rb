@@ -27,8 +27,11 @@ class WeeksController < ApplicationController
 	def destroy
 		semester = Semester.find(params[:semester_id])
 		week = Week.find(params[:id])
-		week.destroy
-		flash[:alert] = "Week succesfully deleted"
+		if week.destroy
+			flash[:alert] = "Week succesfully deleted"
+		else
+			flash[:error] = "Can't delete week"
+		end
 		redirect_to semester
 	end
 

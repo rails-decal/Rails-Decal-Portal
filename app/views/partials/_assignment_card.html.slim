@@ -12,14 +12,13 @@ div.assignment.card
 	div.assignment-info
 		div.top-section
 			h3.week-number
-				= "Homework " + assignment_card.week.week_number.to_s
+				= assignment_card.title
 				- if is_admin
 					i.material-icons.edit-assignment-button.edit-button edit
 			div.caption-info
 				p.due-date
 					= "Due " + assignment_card.due_date.to_date.strftime("%a, %b %d").to_s
 				p.week-title
-					= assignment_card.title
 				- if assignment_card.description != ""
 					p.assignment-description
 						= assignment_card.description

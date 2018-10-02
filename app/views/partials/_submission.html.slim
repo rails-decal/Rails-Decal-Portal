@@ -11,16 +11,16 @@ div.submission.card
 					end
 					student_names = student_names.join(", ")
 				= "Submitted by " + student_names
+				= "Date Submitted: " + submission.date
+				= "Date Due: " + submission.assignment.due_date
 		= link_to "View Submission", submission.link, target: "blank", class: "button"
 
-	= form_for [submission] do |f| 
+	= form_for [submission] do |f|
 		h6.field-title.first grade
-		h6.field-caption 
+		h6.field-caption
 			= "out of " + submission.assignment.points.to_s + " points"
 		= f.number_field :score, required: true, max: submission.assignment.points
 		h6.field-title feedback
 		= f.text_area :comment
 		br
 		= f.submit "Save Assignment Grade"
-
-

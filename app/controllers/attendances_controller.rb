@@ -38,7 +38,7 @@ class AttendancesController < ApplicationController
         flash[:notice] = "Attendance recorded!"
         redirect_back fallback_location: root_path
       else
-        flash[:alert] = "Incorrect attendance word"
+        flash[:alert] = "Incorrect/Expired attendance word"
         redirect_back fallback_location: root_path
       end
     end
