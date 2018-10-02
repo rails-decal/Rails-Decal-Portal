@@ -11,8 +11,8 @@ div.submission.card
 					end
 					student_names = student_names.join(", ")
 				= "Submitted by " + student_names
-				= "Date Submitted: " + submission.date
-				= "Date Due: " + submission.assignment.due_date
+				= "Date Submitted: " + submission.date.to_s
+				= "Date Due: " + submission.assignment.due_date.to_s
 		= link_to "View Submission", submission.link, target: "blank", class: "button"
 
 	= form_for [submission] do |f|

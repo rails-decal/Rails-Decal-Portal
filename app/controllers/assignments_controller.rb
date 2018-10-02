@@ -15,7 +15,7 @@ class AssignmentsController < ApplicationController
 	def create
 		semester = Semester.find(params[:semester_id])
 		week = Week.where({
-			semester_id: semester.id, 
+			semester_id: semester.id,
 			week_number: params[:assignment][:week_number]
 		})[0]
 		assignment = Assignment.create(assignment_params)
@@ -35,7 +35,7 @@ class AssignmentsController < ApplicationController
 		semester = Week.find(params[:week_id]).semester
 
 		week = Week.where({
-			semester_id: semester.id, 
+			semester_id: semester.id,
 			week_number: params[:assignment][:week_number]
 		})[0]
 		assignment.update! assignment_params
