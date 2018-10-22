@@ -16,12 +16,10 @@ div.assignment.card
 				- if is_admin
 					i.material-icons.edit-assignment-button.edit-button edit
 			div.caption-info
+				p.week-title
+					= assignment_card.description
 				p.due-date
 					= "Due " + assignment_card.due_date.to_date.strftime("%a, %b %d").to_s
-				p.week-title
-				- if assignment_card.description != ""
-					p.assignment-description
-						= assignment_card.description
 		- if !is_admin
 			div.grade-info
 				div.main

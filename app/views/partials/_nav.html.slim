@@ -30,6 +30,8 @@ nav
 			= link_to "Roster", semester_students_path(semester_id: @semester.id)
 		div.nav-item#staff
 			= link_to "Staff", admins_path
+		div.nav-item#resources
+			= link_to "Course Resources", "https://guide.rails.world"
 		- if is_admin
 			div.nav-item#gradebook
 				= link_to "Gradebook", semester_submissions_path(semester_id: @semester.id)
