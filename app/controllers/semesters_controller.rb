@@ -77,6 +77,9 @@ class SemestersController < ApplicationController
 		redirect_to '/'
 	end
 
+	def json
+		 render json: Assignment.last
+	end
 	private
 	def semester_params
 		params.require(:semester).permit(:title, :enrollment_code)

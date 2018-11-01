@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
   resources :submissions, only: [:update]
 
+  get 'json', to: 'semesters#json'
 
 
 end

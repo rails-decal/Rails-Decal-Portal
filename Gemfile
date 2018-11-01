@@ -39,7 +39,6 @@ gem 'faker'
 gem 'slim'
 
 
-
 # Provides an easy-to-use interface for managing your data.
 gem 'rails_admin', '~> 1.3'
 
