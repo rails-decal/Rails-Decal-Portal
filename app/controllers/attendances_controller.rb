@@ -15,7 +15,7 @@ class AttendancesController < ApplicationController
         return
       end
       attendance = Attendance.create({
-        status: 2,
+        status: :requested,
         week_id: week.id,
         student_id: @current_user.id,
         comment: params[:comment]
@@ -27,9 +27,8 @@ class AttendancesController < ApplicationController
     else
       week = Week.find(params[:week_id])
       if params[:attendance_word] == week.attendance_word
-        puts "WE MADE IT"
         attendance = Attendance.create({
-          status: 1,
+          status: :present,
           week_id: week.id,
           student_id: @current_user.id
         })
@@ -45,6 +44,7 @@ class AttendancesController < ApplicationController
   end
 
   def update
+    
     attendance = Attendance.find(params[:id])
     attendance.update(status: "excused")
     attendance.save!

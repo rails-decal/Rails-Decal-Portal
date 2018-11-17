@@ -1,21 +1,20 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_current_user
+  before_action :set_semester
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  helper_method :user_signed_in
+  helper_method :is_admin
 
   def authenticate!
     if @current_user.nil?
-      puts "User is nil"
       redirect_to "/sign_in"
     elsif @current_user.is_a? Admin
       :authenticate_admin!
-      puts "User is admin"
     elsif @current_user.is_a? Student
       :authenticate_student!
-      puts "User is student"
     else
-      puts "What the hell is user??"
-      puts @current_user
       redirect_to "/sign_in"
     end
     is_admin
@@ -25,24 +24,29 @@ class ApplicationController < ActionController::Base
     !@current_user.nil?
   end
 
+  # Creates variable for all controllers to access current_user
   def set_current_user
-    puts current_student
-    puts current_admin
     @current_user = current_student || current_admin
   end
 
   def is_admin
     if @current_user and @current_user.is_a? Admin
-      puts "Is admin!"
       true
     else
-      puts "Is not admin :("
       false
     end
   end
 
-  helper_method :user_signed_in
-  helper_method :is_admin
+  # Creates variable for all controllers to access current_user
+  def set_semester
+    id = params[:semester_id]
+    if id
+      @semester = Semester.find(id)
+    else
+      @semester = Semester.all.sort_by {|x| [x.active ? 1 : 0, x.created_at] }.last
+    end
+  end
+
 
   protected
 

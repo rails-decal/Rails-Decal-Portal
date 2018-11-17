@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'edit_profile', to: 'login#edit_profile'
   post 'activate_semester', to: 'semesters#activate'
 
+
   resources :semesters do
     resources :weeks, only: [:create, :new, :edit, :update, :destroy]
     resources :assignments, only: [:index, :destroy, :create]
@@ -41,6 +42,8 @@ Rails.application.routes.draw do
   end
 
   resources :submissions, only: [:update]
+
+  # TODO: Look up rails conventions when it comes to nested resources vs....non-nested resources
 
   get 'json', to: 'semesters#json'
 

@@ -47,7 +47,7 @@ main
 	  	div.modal-form.absence-request
 			div.close &times;
 			h3 = "Absence Request"
-			= form_tag("/semesters/#{@semester.id}/attendances", method: "post") do
+			= form_tag("/semesters/#{@semester.id}/attendances", method: "patch") do
 				h6.field-title week number
 				= number_field_tag :week_number
 				h6.field-title reason for excuse

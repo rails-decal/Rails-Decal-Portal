@@ -39,7 +39,8 @@ class Student < ApplicationRecord
   private
 
   def add_semester(student)
-  	student.semester_id = Semester.all.sort_by {|x| [x.active ? 1 : 0, x.created_at] }.last.id
-  	student.save!
+    semester = Semester.all.sort_by {|x| [x.active ? 1 : 0, x.created_at] }.last
+  	student.update semester: semester
+    semester.weeks.each {|week| Attendance.create status: :absent, week: week, student: student }
   end
 end

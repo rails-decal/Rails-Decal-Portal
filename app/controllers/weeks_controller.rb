@@ -6,6 +6,8 @@ class WeeksController < ApplicationController
 		week.semester_id = params[:semester_id]
 		if week.save
 			flash[:notice] = "Week created!"
+			# Create default attendance for every student
+			Student.all.each { |s| Attendance.create status: :absent, week: week, student: s }
 			redirect_to semester_path params[:semester_id]
 		else
 			flash[:error] = week.errors.full_messages.to_sentence
