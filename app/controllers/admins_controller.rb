@@ -2,8 +2,7 @@ class AdminsController < ApplicationController
 	before_action :authenticate!
 
 	def index
-		sorted = Semester.all.sort_by {|x| [x.active ? 1 : 0, x.created_at] }
-		@semester = sorted.last
+		@semester = Semester.latest
 		@admins = Admin.where(active: true).sort_by { |x| x.created_at }
 	end
 

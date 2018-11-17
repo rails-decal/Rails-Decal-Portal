@@ -41,9 +41,9 @@ class ApplicationController < ActionController::Base
   def set_semester
     id = params[:semester_id]
     if id
-      @semester = Semester.find(id)
+      @current_semester = Semester.find(id)
     else
-      @semester = Semester.all.sort_by {|x| [x.active ? 1 : 0, x.created_at] }.last
+      @current_semester = Semester.latest
     end
   end
 

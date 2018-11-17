@@ -24,11 +24,11 @@ class Student < ApplicationRecord
   has_many :submissions, :through => :student_submissions
 
   def valid_enrollment
-    sorted = Semester.all.sort_by {|x| [x.active ? 1 : 0, x.created_at] }
-    if sorted.count == 0
+    semester = Semester.latest
+    if semester.nil?
       errors.add(:base, "There are no available semesters")
     else
-      if enrollment_code != sorted.last.enrollment_code
+      if enrollment_code != semester.enrollment_code
         errors.add(:base, "#{enrollment_code} is not a valid enrollment code")
       end
     end
@@ -39,7 +39,7 @@ class Student < ApplicationRecord
   private
 
   def add_semester(student)
-    semester = Semester.all.sort_by {|x| [x.active ? 1 : 0, x.created_at] }.last
+    semester = Semester.latest
   	student.update semester: semester
     semester.weeks.each {|week| Attendance.create status: :absent, week: week, student: student }
   end
