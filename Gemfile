@@ -40,7 +40,7 @@ gem 'slim'
 
 
 # Provides an easy-to-use interface for managing your data.
-gem 'rails_admin', '~> 1.3'
+gem 'rails_admin', '~> 1.4'
 
 #Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema.
 gem 'annotate', '~> 2.7', '>= 2.7.1'
