@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   end
 
   resources :admins, only: [:index]
+  get '/grading', to: 'admins#grading'
 
   resources :weeks do
     resources :assignments, only: [:create, :edit, :update]

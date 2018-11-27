@@ -1,0 +1,21 @@
+<h1>Students who didn't turn in project 1</h1>
+Count: <%= @assignment_failure.count %><br/>
+<% @assignment_failure.each do |s| %>
+  <%= s.name %>
+  <br/>
+<% end %>
+
+<h1>Students who haven't been to at least 6 classes</h1>
+Count: <%= @attendance_failure.count %><br/>
+<% @attendance_failure.each do |s| %>
+  <%= s.name %>
+  <br/>
+<% end %>
+
+
+<h1>Students who fall into both categories :(</h1>
+Count: <%= @both.count %><br/>
+<% @both.each do |s| %>
+  <%= s.name %>
+  <br/>
+<% end %>
