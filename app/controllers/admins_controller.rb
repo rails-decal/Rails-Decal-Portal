@@ -8,8 +8,8 @@ class AdminsController < ApplicationController
 
 	def grading
 		a = Assignment.last
-		@assignment_failure = Student.all.select {|s| s.submissions.select {|sub| sub.assignment = a}.count == 0}
-		@attendance_failure = Student.all.select {|s| s.attendances.count < 6}
+		@assignment_failure = Student.all.select {|s| s.submissions.count < 4}
+		@attendance_failure = Student.all.select {|s| s.attendances.count < 7}
 		@both = @assignment_failure & @attendance_failure
 	end
 
