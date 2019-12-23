@@ -49,7 +49,7 @@ def make_admins
 			active: true,
 			email: "admin#{n}@email.com",
 			name: ADMIN_NAMES[n - 1],
-			office_hours: Faker::RickAndMorty.quote,
+			office_hours: Faker::TvShows::RickAndMorty.quote,
 			picture: IMAGE_NAMES,
 			password: "password",
 		)
@@ -80,7 +80,7 @@ def make_weeks
 		w = Week.create(
 			date: initial_date + n.days,
 			title: Faker::Educator.course,
-			description: Faker::Friends.quote,
+			description: Faker::TvShows::Friends.quote,
 			week_number: n / 2,
 			semester_id: n % NUM_SEMESTER + 1,
 			attendance_word: Faker::Hipster.word,
@@ -108,7 +108,7 @@ end
 def make_assignments
 	1.upto(NUM_ASSIGNMENT) do |n|
 		a = Assignment.create(
-			title: Faker::Hipster.sentence(3),
+			title: Faker::Hipster.sentence(word_count: 3),
 			description: Faker::Hipster.paragraph,
 			link: "https://" + Faker::Internet.domain_word + "." + Faker::Internet.domain_suffix,
 			week_id: n % NUM_WEEK + 1,
