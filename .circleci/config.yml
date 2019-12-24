@@ -136,8 +136,7 @@ jobs:
       - run:
           command: |
             ls
-            ./cc-test-reporter sum-coverage --output - codeclimate.*.json
-            ./cc-test-reporter upload-coverage --debug --input -
+            ./cc-test-reporter sum-coverage --output - codeclimate.*.json | ./cc-test-reporter upload-coverage --debug --input -
 
 workflows:
   version: 2
