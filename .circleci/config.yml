@@ -34,15 +34,15 @@ jobs:
       # bundle cache
       - restore_cache:
           keys:
-            - rails-portal-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-            - rails-portal-bundle-{{ .Branch }}-
-            - rails-portal-bundle-
+            - rails-portal-bundle-v1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - rails-portal-bundle-v1-{{ .Branch }}-
+            - rails-portal-bundle-v1
       - run:
           name: Bundle Install
           command: bundle check || bundle install
       # Store bundle cache
       - save_cache:
-          key: rails-portal-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          key: rails-portal-bundle-v1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       # Only necessary if app uses webpacker or yarn in some other way
@@ -82,8 +82,9 @@ jobs:
           command: gem update bundler && bundle -v
       - restore_cache:
           keys:
-            - rails-portal-bundle-v2-{{ checksum "Gemfile.lock" }}
-            - rails-portal-bundle-v2-
+            - rails-portal-bundle-v1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - rails-portal-bundle-v1-{{ .Branch }}-
+            - rails-portal-bundle-v1-
       - run:
           name: Bundle Install
           command: bundle check || bundle install
@@ -134,9 +135,7 @@ jobs:
       #       curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
       #       chmod +x ./cc-test-reporter
       - run:
-          command: |
-            ls
-            ./cc-test-reporter sum-coverage --output - codeclimate.*.json | ./cc-test-reporter upload-coverage --debug --input -
+          command: ./cc-test-reporter sum-coverage --output - codeclimate.*.json | ./cc-test-reporter upload-coverage --debug --input -
 
 workflows:
   version: 2
