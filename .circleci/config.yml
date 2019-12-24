@@ -28,7 +28,7 @@ jobs:
       # Which version of bundler?
       - run:
           name: Which bundler?
-          command: gem update bundler || bundle -v
+          command: gem update bundler && bundle -v
       # bundle cache
       - restore_cache:
           keys:
@@ -62,6 +62,10 @@ jobs:
       - *postgres
     steps:
       - checkout
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: gem update bundler && bundle -v
       - restore_cache:
           keys:
             - rails-portal-bundle-v2-{{ checksum "Gemfile.lock" }}
