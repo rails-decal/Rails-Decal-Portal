@@ -10,7 +10,8 @@ end
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
-
+# Use Postgresql as the database for Active Record
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 4.3'
 # Use SCSS for stylesheets
@@ -34,8 +35,6 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Create fake data for seeds.rb
-gem 'faker'
 # Use slim for HTML
 gem 'slim'
 
@@ -43,20 +42,21 @@ gem 'slim'
 # Provides an easy-to-use interface for managing your data.
 gem 'rails_admin', '~> 1.4'
 
-#Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema.
-gem 'annotate', '~> 2.7', '>= 2.7.1'
-
 # For icons
 gem 'material_icons'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-byebug'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
+  gem 'rspec-rails'
+  gem "rspec_junit_formatter"
+  gem 'simplecov'
+  # Create fake data for seeds.rb
+  gem 'faker'
 end
 
 group :development do
@@ -66,10 +66,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-end
-
-group :production do
-  gem 'pg'
+  #Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema.
+  gem 'annotate', '~> 2.7', '>= 2.7.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

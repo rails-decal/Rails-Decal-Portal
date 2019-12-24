@@ -1,0 +1,145 @@
+version: 2
+
+references:
+  default_docker_ruby_executor: &default_docker_ruby_executor
+    image: circleci/ruby:2.6.5-stretch-node
+    environment:
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLER_VERSION: 2.0.2
+      BUNDLE_PATH: vendor/bundle
+      PGHOST: 127.0.0.1
+      PGUSER: railsdecal
+      PGPASSWORD: ""
+      RAILS_ENV: test
+      COVERAGE: true
+  postgres: &postgres
+    image: circleci/postgres:10.11-alpine
+    environment:
+      POSTGRES_USER: railsdecal
+      POSTGRES_DB: rails_portal_test
+      POSTGRES_PASSWORD: ""
+
+jobs:
+  build:
+    docker:
+      - *default_docker_ruby_executor
+    steps:
+      - checkout
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: gem update bundler && bundle -v
+
+      # bundle cache
+      - restore_cache:
+          keys:
+            - rails-portal-bundle-v1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - rails-portal-bundle-v1-{{ .Branch }}-
+            - rails-portal-bundle-v1
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+      # Store bundle cache
+      - save_cache:
+          key: rails-portal-bundle-v1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      # Only necessary if app uses webpacker or yarn in some other way
+      # - restore_cache:
+      #     keys:
+      #       - rails-demo-yarn-{{ checksum "yarn.lock" }}
+      #       - rails-demo-yarn-
+      # - run:
+      #     name: Yarn Install
+      #     command: yarn install --cache-folder ~/.cache/yarn
+      # # Store yarn / webpacker cache
+      # - save_cache:
+      #     key: rails-demo-yarn-{{ checksum "yarn.lock" }}
+      #     paths:
+      #       - ~/.cache/yarn
+      - run:
+          name: Install Code Climate Test Reporter
+          command: |
+            mkdir -p code-climate
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./code-climate/cc-test-reporter
+            chmod +x ./code-climate/cc-test-reporter
+      - persist_to_workspace:
+          root: code-climate
+          paths: 
+            - cc-test-reporter
+
+  test:
+    parallelism: 3
+    docker:
+      - *default_docker_ruby_executor
+      - *postgres
+    steps:
+      - checkout
+      # Which version of bundler?
+      - run:
+          name: Update Bundler
+          command: gem update bundler && bundle -v
+      - restore_cache:
+          keys:
+            - rails-portal-bundle-v1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - rails-portal-bundle-v1-{{ .Branch }}-
+            - rails-portal-bundle-v1-
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+      # - restore_cache:
+      #     keys:
+      #       - rails-demo-yarn-{{ checksum "yarn.lock" }}
+      #       - rails-demo-yarn-
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
+      # Run rspec in parallel
+      - run:
+          command: |
+            mkdir -p /tmp/test-results
+            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+            bundle exec rspec $TESTFILES --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
+      - attach_workspace:
+          at: .
+      - run:
+          name: Code Climate Test Coverage
+          command: |
+            ./cc-test-reporter format-coverage -t simplecov -o "coverage/codeclimate.$CIRCLE_NODE_INDEX.json"
+      - persist_to_workspace:
+          root: coverage
+          paths:
+            - codeclimate.*.json
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+
+  upload-coverage:
+    docker:
+      - *default_docker_ruby_executor
+    environment:
+      CC_TEST_REPORTER_ID: 070d1cd454181a973d59622ec764c9cae9e25f8395a3ba047c4139a2a5a3f45d
+
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          command: ./cc-test-reporter sum-coverage --output - codeclimate.*.json | ./cc-test-reporter upload-coverage --debug --input -
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - upload-coverage:
+          requires:
+            - test
