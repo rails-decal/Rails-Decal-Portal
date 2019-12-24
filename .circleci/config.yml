@@ -22,7 +22,6 @@ references:
 
 jobs:
   build:
-    working_directory: ~/rails_portal
     docker:
       - *default_docker_ruby_executor
     steps:
@@ -73,7 +72,6 @@ jobs:
             - cc-test-reporter
 
   test:
-    working_directory: ~/rails_portal
     parallelism: 3
     docker:
       - *default_docker_ruby_executor
@@ -131,16 +129,16 @@ jobs:
     # working_directory: ~/bikeindex/bike_index
 
     steps:
-      # - attach_workspace:
-      #     at: /tmp/workspace
+      - attach_workspace:
+          at: .
+      # - run:
+      #     name: Install Code Climate Test Reporter
+      #     command: |
+      #       curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+      #       chmod +x ./cc-test-reporter
       - run:
-          name: Install Code Climate Test Reporter
           command: |
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            chmod +x ./cc-test-reporter
-      - run:
-          command: |
-            ./cc-test-reporter sum-coverage --output - codeclimate.*.json | ./cc-test-reporter upload-coverage --debug --input -
+            ./cc-test-reporter sum-coverage --output - "codeclimate.*.json" | ./cc-test-reporter upload-coverage --debug --input -
 
 workflows:
   version: 2
