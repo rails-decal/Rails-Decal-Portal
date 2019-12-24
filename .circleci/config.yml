@@ -68,7 +68,8 @@ jobs:
             ls code-climate
       - persist_to_workspace:
           root: code-climate
-          path: cc-test-reporter
+          paths: 
+            - cc-test-reporter
 
   test:
     working_directory: ~/rails_portal
