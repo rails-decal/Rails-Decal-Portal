@@ -13,7 +13,7 @@ references:
       PGPASSWORD: ""
       RAILS_ENV: test
   postgres: &postgres
-    image: circleci/postgres:9.5-alpine
+    image: circleci/postgres:10.11-alpine
     environment:
       POSTGRES_USER: railsdecal
       POSTGRES_DB: rails_portal_test

@@ -53,6 +53,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'rspec'
+  gem "rspec_junit_formatter"
   # Create fake data for seeds.rb
   gem 'faker'
 end
