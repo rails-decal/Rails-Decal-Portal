@@ -65,6 +65,7 @@ jobs:
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./code-climate/cc-test-reporter
             chmod +x ./code-climate/cc-test-reporter
             pwd
+            ls code-climate
       - persist_to_workspace:
           root: code-climate
           path: cc-test-reporter
