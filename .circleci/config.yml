@@ -28,18 +28,18 @@ jobs:
       # Which version of bundler?
       - run:
           name: Which bundler?
-          command: bundle -v
+          command: gem update bundler || bundle -v
       # bundle cache
       - restore_cache:
           keys:
-            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
-            - rails-demo-bundle-v2-
+            - rails-portal-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-portal-bundle-v2-
       - run:
           name: Bundle Install
           command: bundle check || bundle install
       # Store bundle cache
       - save_cache:
-          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          key: rails-portal-bundle-v2-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       # Only necessary if app uses webpacker or yarn in some other way
@@ -64,8 +64,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
-            - rails-demo-bundle-v2-
+            - rails-portal-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-portal-bundle-v2-
       - run:
           name: Bundle Install
           command: bundle check || bundle install
