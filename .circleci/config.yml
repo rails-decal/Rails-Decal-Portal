@@ -107,10 +107,11 @@ jobs:
             TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
             bundle exec rspec $TESTFILES --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
       - attach_workspace:
-          at: .
+          at: ~/rails_portal
       - run:
           name: Code Climate Test Coverage
           command: |
+            ls
             ./code-climate/cc-test-reporter format-coverage -t simplecov -o "coverage/codeclimate.$CIRCLE_NODE_INDEX.json"
       - persist_to_workspace:
           root: coverage
