@@ -29,9 +29,7 @@ jobs:
       # Which version of bundler?
       - run:
           name: Which bundler?
-          command: |
-            gem env && gem update bundler && bundle -v
-            ls /usr/local/bundle
+          command: gem update bundler && bundle -v
 
       # bundle cache
       - restore_cache:
@@ -126,7 +124,6 @@ jobs:
       - *default_docker_ruby_executor
     environment:
       CC_TEST_REPORTER_ID: 070d1cd454181a973d59622ec764c9cae9e25f8395a3ba047c4139a2a5a3f45d
-    # working_directory: ~/bikeindex/bike_index
 
     steps:
       - attach_workspace:
@@ -138,7 +135,9 @@ jobs:
       #       chmod +x ./cc-test-reporter
       - run:
           command: |
-            ./cc-test-reporter sum-coverage --output - "codeclimate.*.json" | ./cc-test-reporter upload-coverage --debug --input -
+            ls
+            ./cc-test-reporter sum-coverage --output - codeclimate.*.json
+            ./cc-test-reporter upload-coverage --debug --input -
 
 workflows:
   version: 2
